@@ -358,7 +358,7 @@ h6 {
   .navmenu a:focus {
     color: var(--nav-dropdown-color);
     padding: 10px 20px;
-    font-family: var(--nav-font);
+  font-family: var(--default-font);
     font-size: 17px;
     font-weight: 500;
     display: flex;
@@ -448,6 +448,7 @@ h6 {
   }
 }
 
+
 /*--------------------------------------------------------------
 # Global Footer
 --------------------------------------------------------------*/
@@ -487,7 +488,7 @@ h6 {
 
 .footer .footer-about .logo span {
   color: var(--heading-color);
-  font-family: var(--heading-font);
+    font-family: var(--default-font);
   font-size: 26px;
   font-weight: 700;
   letter-spacing: 1px;
@@ -495,7 +496,7 @@ h6 {
 
 .footer .footer-about p {
   font-size: 14px;
-  font-family: var(--heading-font);
+  font-family: var(--default-font);
 }
 
 .footer .social-links a {
@@ -775,6 +776,7 @@ section,
   overflow: hidden;
 }
 
+
 .hero .info {
   position: relative;
   inset: 0;
@@ -795,6 +797,7 @@ section,
   font-size: 56px;
   font-weight: 700;
   position: relative;
+  
 }
 
 .hero .info h2:after {
@@ -819,6 +822,7 @@ section,
 .hero .info p {
   color: color-mix(in srgb, var(--default-color), transparent 20%);
   font-size: 18px;
+  
 }
 
 .hero .info .btn-get-started {
@@ -927,6 +931,12 @@ section,
 /*--------------------------------------------------------------
 # Get Started Section
 --------------------------------------------------------------*/
+
+
+.single-special {
+    background-color: #0d66b4; /* يمكنك تغيير هذا اللون */
+}
+
 .get-started .content {
   padding: 30px 0;
 }
@@ -1746,7 +1756,7 @@ section,
 .stats-counter .stats-item p {
   padding: 0;
   margin: 0;
-  font-family: var(--heading-font);
+  font-family: var(--default-font);
   font-size: 16px;
 }
 
