@@ -823,7 +823,7 @@ section,
 
 .hero .info .btn-get-started {
   color: var(--contrast-color);
-  font-family: var(--heading-font);
+  font-family: var(--default-font);
   font-weight: 500;
   font-size: 16px;
   letter-spacing: 1px;
