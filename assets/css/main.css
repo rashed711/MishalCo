@@ -12,7 +12,7 @@
 --------------------------------------------------------------*/
 /* Fonts */
 :root {
-  --default-font: "Open Sans",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
+  --default-font: "Cairo",  system-ui, -apple-system, "Segoe UI", Roboto, "Helvetica Neue", Arial, "Noto Sans", "Liberation Sans", sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol", "Noto Color Emoji";
   --heading-font: "Roboto",  sans-serif;
   --nav-font: "Poppins",  sans-serif;
 }
@@ -84,7 +84,7 @@ h4,
 h5,
 h6 {
   color: var(--heading-color);
-  font-family: var(--heading-font);
+  font-family: var(--default-font);
 }
 
 /* PHP Email Form Messages
@@ -168,7 +168,7 @@ h6 {
 .header .logo span {
   font-size: 24px;
   padding-left: 1px;
-  font-family: var(--heading-font);
+  font-family: var(--default-font);
   color: var(--color-primary);
 }
 
@@ -220,7 +220,7 @@ h6 {
     color: var(--nav-color);
     font-size: 14px;
     padding: 0 2px;
-    font-family: var(--nav-font);
+   font-family: var(--default-font);
     font-weight: 500;
     display: flex;
     align-items: center;
