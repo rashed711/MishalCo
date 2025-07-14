@@ -881,6 +881,10 @@ section,
   justify-content: start;
 }
 
+.social-links a {
+        margin-right: 15px;
+    }
+
 @media (min-width: 640px) {
   .hero .carousel-control-prev {
     padding-left: 15px;
