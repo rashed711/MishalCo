@@ -1441,6 +1441,7 @@ section,
 --------------------------------------------------------------*/
 .testimonials .testimonial-wrap {
   padding-left: 50px;
+  width: 300px
 }
 
 .testimonials .testimonials-carousel,
