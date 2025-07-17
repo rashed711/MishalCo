@@ -179,10 +179,10 @@ h6 {
 /* Global Header on Scroll
 ------------------------------*/
 .scrolled .header {
-  --background-color: rgba(255, 255, 255, 0.95);
+  --background-color: rgba(21, 20, 20, 0.935);
   --heading-color: #3c3c3c;
-  --nav-color: #3c3c3c;
-  --nav-hover-color: #3c3c3c;
+  --nav-color: #ffffff;
+  --nav-hover-color: #ffffff;
 }
 
 /*--------------------------------------------------------------
@@ -713,7 +713,7 @@ section,
 .section {
   color: var(--default-color);
   background-color: var(--background-color);
-  padding: 60px 0;
+  padding: 10px 0;
   scroll-margin-top: 92px;
   overflow: clip;
 }
@@ -1441,6 +1441,7 @@ section,
 --------------------------------------------------------------*/
 .testimonials .testimonial-wrap {
   padding-left: 50px;
+  width: 300px
 }
 
 .testimonials .testimonials-carousel,
