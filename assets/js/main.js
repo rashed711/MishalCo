@@ -167,3 +167,45 @@
   new PureCounter();
 
 })();
+
+//--------------------------------------------الكود الخاص بمشاركة المقال------------------------------------------------------//
+document.addEventListener('DOMContentLoaded', function() {
+    // الحصول على URL وعنوان الصفحة الحالية
+    const currentPageUrl = encodeURIComponent(window.location.href);
+    const currentPageTitle = encodeURIComponent(document.title);
+
+    // تحديث روابط المشاركة
+
+    // فيسبوك
+    const facebookButton = document.querySelector('.share-button.facebook');
+    if (facebookButton) {
+        facebookButton.href = `https://www.facebook.com/sharer/sharer.php?u=${currentPageUrl}`;
+    }
+
+    // تويتر / X
+    const twitterButton = document.querySelector('.share-button.twitter');
+    if (twitterButton) {
+        twitterButton.href = `https://twitter.com/intent/tweet?url=${currentPageUrl}&text=${currentPageTitle}`;
+    }
+
+    // واتساب
+    const whatsappButton = document.querySelector('.share-button.whatsapp');
+    if (whatsappButton) {
+        // نص اختياري يمكنك تعديله لرسالة واتساب
+        const whatsappText = encodeURIComponent(`: ${document.title} - `);
+        whatsappButton.href = `https://wa.me/?text=${whatsappText}${currentPageUrl}`;
+    }
+
+    // لينكد إن
+    const linkedinButton = document.querySelector('.share-button.linkedin');
+    if (linkedinButton) {
+        linkedinButton.href = `https://www.linkedin.com/shareArticle?mini=true&url=${currentPageUrl}&title=${currentPageTitle}`;
+    }
+
+    // بريد إلكتروني
+    const emailButton = document.querySelector('.share-button.email');
+    if (emailButton) {
+        emailButton.href = `mailto:?subject=${currentPageTitle}&body=ألق نظرة على هذه الصفحة: ${currentPageUrl}`;
+    }
+});
+//--------------------------------------------الكود الخاص بمشاركة المقال------------------------------------------------------//
