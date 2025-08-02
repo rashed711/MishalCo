@@ -459,6 +459,42 @@
   <!-- Main JS File -->
   <script src="assets/js/main.js"></script>
 
+
+  <!-- Start Whatsapp button -->
+  <style>
+    .whatsapp-button {
+      position: fixed;
+      bottom: 60px;
+      right: 15px;
+      z-index: 1000;
+      width: 40px;
+      height: 40px;
+      /* background-color: #25d366; */
+      color: white;
+      /* border-radius: 50%; */
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+      transition: transform 0.3s ease;
+    }
+
+    .whatsapp-button:hover {
+      transform: scale(1.1);
+    }
+
+    .whatsapp-icon {
+      width: 30px;
+      height: 30px;
+    }
+  </style>
+
+  <a href="https://wa.me/+9660568000085" class="whatsapp-button" target="_blank">
+    <img src="assets/img/whatsapp.png" alt="WhatsApp" class="whatsapp-icon" style="width: 35px; height: 35px;">
+  </a>
+  
+  <!-- End Whatsapp button -->
+
 </body>
 
 </html>
