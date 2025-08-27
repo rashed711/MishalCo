@@ -185,6 +185,71 @@ h6 {
   --nav-hover-color: #ffffff;
 }
 
+/*---------------------------------------------------------------*/
+/*---------------------------------------------------------------*/
+.portfolio-filters li {
+    padding: 15px 20px !important; /* زيادة الحشوة لزيادة حجم الزر */
+    margin: 10px !important; 
+    border-radius: 30px !important;
+    transition: all 0.3s ease-in-out !important;
+    cursor: pointer !important;
+    
+    background-color: var(--surface-color) !important;
+    color: var(--default-color) !important;
+    border: 2px solid #e0e0e0 !important;
+    box-shadow: 0 3px 8px rgba(0, 0, 0, 0.1) !important;
+    
+    display: inline-block !important;
+    text-align: center !important;
+    font-weight: 900 !important;
+    font-size: 12px !important; /* زيادة حجم الخط */
+}
+
+.portfolio-filters li.filter-active {
+    background-color: var(--accent-color) !important;
+    color: var(--contrast-color) !important;
+    border-color: var(--accent-color) !important;
+    box-shadow: 0 5px 15px rgba(254, 185, 0, 0.4) !important;
+    transform: translateY(-3px) !important;
+}
+
+.portfolio-filters li:hover {
+    background-color: #f5f5f5 !important;
+    color: var(--default-color) !important;
+    border-color: #ccc !important;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15) !important;
+    transform: translateY(-2px) !important;
+}
+
+.portfolio-filters li.filter-active:hover {
+    background-color: #e5a800 !important;
+    border-color: #e5a800 !important;
+    color: var(--contrast-color) !important;
+    box-shadow: 0 6px 18px rgba(254, 185, 0, 0.5) !important;
+    transform: translateY(-4px) !important;
+}
+
+
+/*---------------------------------------------------------------*/
+.img-square {
+  width: 100%; /* تأكد أن العرض 100% بالنسبة للعنصر الأب */
+  height: 250px; /* أو أي ارتفاع مربع تفضله، مثلاً 300px */
+  object-fit: cover; /* هذا هو المفتاح: يجعل الصورة تملأ المساحة مع الحفاظ على الأبعاد وقص الزائد */
+  aspect-ratio: 1 / 1; /* يجعل الارتفاع يساوي العرض بشكل تلقائي إذا كان المتصفح يدعمها */
+}
+/*---------------------------------------------------------------*/
+
+/* إذا كان المتصفح لا يدعم aspect-ratio، يمكنك الاعتماد على الارتفاع الثابت */
+@supports not (aspect-ratio: 1 / 1) {
+  .img-square {
+    height: 250px; /* استخدم ارتفاع ثابت إذا لم يكن aspect-ratio مدعومًا */
+  }
+}
+/*---------------------------------------------------------------*/
+/*---------------------------------------------------------------*/
+
+
+
 /*--------------------------------------------------------------
 # Navigation Menu
 --------------------------------------------------------------*/
