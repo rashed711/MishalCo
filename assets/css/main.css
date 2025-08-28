@@ -87,6 +87,15 @@ h6 {
   font-family: var(--default-font);
 }
 
+.colored-line {
+  /* إزالة الحدود الافتراضية */
+  border: none;
+  /* تحديد ارتفاع الخط */
+  height: 4px;
+  /* تحديد اللون المطلوب */
+  background-color: var(--accent-color);
+}
+
 /* PHP Email Form Messages
 ------------------------------*/
 .php-email-form .error-message {
