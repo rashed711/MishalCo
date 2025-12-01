@@ -778,9 +778,9 @@
         <div class="col-lg-2 col-md-3 footer-links">
           <h4>روابط سريعة</h4>
           <ul>
-            <li><a href="https://mishal-lawfirm.com">الرئيسية</a></li>
-            <li><a href="https://mishal-lawfirm.com/about.html">عن الشركة</a></li>
-            <li><a href="https://mishal-lawfirm.com/contact.html">اتصل بنا</a></li>
+            <li><a href="index.html">الرئيسية</a></li>
+            <li><a href="about.html">عن الشركة</a></li>
+            <li><a href="contact.html">اتصل بنا</a></li>
             <!-- <li><a href="#">Terms of service</a></li> -->
             <!-- <li><a href="#">Privacy policy</a></li> -->
           </ul>
@@ -893,35 +893,40 @@
     });
   </script>
 
-  <style>
+<style>
     .whatsapp-button {
-      position: fixed;
-      bottom: 25px; /* رفع قليلاً عن الحافة */
-      left: 25px;   /* نقل لليسار لعدم تغطية زر الصعود */
-      z-index: 9999;
-      width: 50px;
-      height: 50px;
+      position: fixed !important;
+      bottom: 25px !important;
+      left: 20px !important;
+      z-index: 9999999 !important; /* رقم طبقة عالٍ جداً */
+      width: 55px;
+      height: 55px;
       background-color: #25d366;
       border-radius: 50%;
-      display: flex;
+      display: flex !important;
       justify-content: center;
       align-items: center;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
-      transition: transform 0.3s ease;
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
       text-decoration: none;
+      transition: all 0.3s ease;
+      -webkit-tap-highlight-color: transparent;
     }
+
     .whatsapp-button:hover {
       transform: scale(1.1);
+      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
     }
-    .whatsapp-icon {
-      width: 30px;
-      height: 30px;
-      filter: brightness(0) invert(1); /* أيقونة بيضاء */
+
+    /* تنسيق الأيقونة بدلاً من الصورة */
+    .whatsapp-button i {
+      font-size: 32px; /* حجم الأيقونة */
+      color: white;    /* لون الأيقونة أبيض */
+      margin-top: 2px; /* ضبط المحاذاة الدقيقة */
     }
   </style>
 
-  <a href="https://wa.me/+9660568000085" class="whatsapp-button" target="_blank" aria-label="Chat on WhatsApp">
-    <img src="assets/img/whatsapp.png" alt="WhatsApp" class="whatsapp-icon">
+  <a href="https://wa.me/966568000085" class="whatsapp-button" target="_blank" aria-label="تواصل معنا عبر واتساب">
+    <i class="bi bi-whatsapp"></i>
   </a>
 
   <script type="text/javascript">
