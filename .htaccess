@@ -1,2 +1,103 @@
 RewriteEngine On
 RewriteRule ^index.html$ https://mishal-lawfirm.com/ [R=301,L]
+
+# ========================================
+# تفعيل الضغط Gzip لتقليل حجم الملفات
+# ========================================
+<IfModule mod_deflate.c>
+  # ضغط HTML, CSS, JavaScript, Text, XML, fonts
+  AddOutputFilterByType DEFLATE text/html text/plain text/xml text/css text/javascript
+  AddOutputFilterByType DEFLATE application/javascript application/x-javascript
+  AddOutputFilterByType DEFLATE application/json application/xml application/xhtml+xml
+  AddOutputFilterByType DEFLATE application/rss+xml application/atom+xml
+  AddOutputFilterByType DEFLATE image/svg+xml
+  AddOutputFilterByType DEFLATE application/vnd.ms-fontobject application/x-font-ttf font/opentype
+</IfModule>
+
+# ========================================
+# تفعيل التخزين المؤقت Browser Caching
+# ========================================
+<IfModule mod_expires.c>
+  ExpiresActive On
+  
+  # الصور - سنة واحدة
+  ExpiresByType image/webp "access plus 1 year"
+  ExpiresByType image/jpg "access plus 1 year"
+  ExpiresByType image/jpeg "access plus 1 year"
+  ExpiresByType image/png "access plus 1 year"
+  ExpiresByType image/gif "access plus 1 year"
+  ExpiresByType image/svg+xml "access plus 1 year"
+  ExpiresByType image/x-icon "access plus 1 year"
+  
+  # CSS و JavaScript - شهر واحد
+  ExpiresByType text/css "access plus 1 month"
+  ExpiresByType application/javascript "access plus 1 month"
+  ExpiresByType application/x-javascript "access plus 1 month"
+  
+  # الخطوط - سنة واحدة
+  ExpiresByType application/font-woff2 "access plus 1 year"
+  ExpiresByType application/font-woff "access plus 1 year"
+  ExpiresByType application/vnd.ms-fontobject "access plus 1 year"
+  ExpiresByType application/x-font-ttf "access plus 1 year"
+  ExpiresByType font/opentype "access plus 1 year"
+  
+  # HTML - ساعة واحدة
+  ExpiresByType text/html "access plus 1 hour"
+  
+  # البيانات - أسبوع
+  ExpiresByType application/json "access plus 1 week"
+  ExpiresByType application/xml "access plus 1 week"
+</IfModule>
+
+# ========================================
+# إضافة رؤوس Cache-Control
+# ========================================
+<IfModule mod_headers.c>
+  # الصور
+  <FilesMatch "\.(jpg|jpeg|png|gif|webp|svg|ico)$">
+    Header set Cache-Control "max-age=31536000, public"
+  </FilesMatch>
+  
+  # CSS و JavaScript
+  <FilesMatch "\.(css|js)$">
+    Header set Cache-Control "max-age=2592000, public"
+  </FilesMatch>
+  
+  # الخطوط
+  <FilesMatch "\.(woff|woff2|ttf|eot|otf)$">
+    Header set Cache-Control "max-age=31536000, public"
+  </FilesMatch>
+</IfModule>
+
+# ========================================
+# دعم WebP - إرسال WebP للمتصفحات الداعمة
+# ========================================
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  
+  # التحقق من دعم المتصفح لـ WebP
+  RewriteCond %{HTTP_ACCEPT} image/webp
+  
+  # إذا كان ملف WebP موجود، استخدمه
+  RewriteCond %{REQUEST_FILENAME} \.(jpe?g|png)$
+  RewriteCond %{REQUEST_FILENAME}.webp -f
+  RewriteRule ^(.+)\.(jpe?g|png)$ $1.$2.webp [T=image/webp,E=accept:1,L]
+</IfModule>
+
+<IfModule mod_headers.c>
+  Header append Vary Accept env=REDIRECT_accept
+</IfModule>
+
+# ========================================
+# تحسينات أمنية وأداء إضافية
+# ========================================
+<IfModule mod_headers.c>
+  # منع Clickjacking
+  Header always set X-Frame-Options "SAMEORIGIN"
+  
+  # تفعيل XSS Protection
+  Header always set X-XSS-Protection "1; mode=block"
+  
+  # منع MIME type sniffing
+  Header always set X-Content-Type-Options "nosniff"
+</IfModule>

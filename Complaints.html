@@ -53,7 +53,7 @@
 
   <link rel="icon" type="image/svg+xml" href="assets/img/logo.svg">
   <link rel="apple-touch-icon" sizes="180x180" href="assets/img/logo.svg">
-  <link rel="mask-icon" href="assets/img/logo_320-320.png" color="#5bbad5">
+  <link rel="mask-icon" href="assets/img/logo_320-320.webp" color="#5bbad5">
   <link rel="manifest" href="assets/site.webmanifest">
 
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -105,7 +105,10 @@
     <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
       <a href="index.html" class="logo d-flex align-items-center">
-        <img src="assets/img/logo.png" alt="مشعل بادغيش">
+        <picture>
+          <source srcset="assets/img/logo.webp" type="image/webp">
+          <img src="assets/img/logo.webp" alt="مشعل بادغيش" loading="lazy">
+        </picture>
         <div class="social-links d-flex mt-4">
           <a href="https://www.linkedin.com/company/mishal-lawfirm/" target="_blank"><i class="bi bi-linkedin"
               style="font-size: 30px;"></i></a>
@@ -136,7 +139,7 @@
   <main class="main">
 
     <!-- Page Title -->
-    <div class="page-title dark-background" style="background-image: url(assets/img/page-title-bg.jpg);">
+    <div class="page-title dark-background" style="background-image: url(assets/img/page-title-bg.webp);">
       <div class="container position-relative">
         <h3>مركز الشكاوى</h3>
 
@@ -234,19 +237,19 @@
 
   <div id="preloader"></div>
 
-  <script src="https://code.jquery.com/jquery-3.7.1.min.js"></script>
+  <script src="https://code.jquery.com/jquery-3.7.1.min.js" defer></script>
 
-  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+  <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js" defer></script>
   <script src="assets/vendor/php-email-form/validate.js"></script>
-  <script src="assets/vendor/aos/aos.js"></script>
-  <script src="assets/vendor/glightbox/js/glightbox.min.js"></script>
-  <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
-  <script src="assets/vendor/swiper/swiper-bundle.min.js"></script>
+  <script src="assets/vendor/aos/aos.js" defer></script>
+  <script src="assets/vendor/glightbox/js/glightbox.min.js" defer></script>
+  <script src="assets/vendor/purecounter/purecounter_vanilla.js" defer></script>
+  <script src="assets/vendor/swiper/swiper-bundle.min.js" defer></script>
 
-  <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
-  <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+  <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js" defer></script>
+  <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js" defer></script>
 
-  <script src="assets/js/main.js"></script>
+  <script src="assets/js/main.js" defer></script>
 
   <script>
     $(window).on('load', function() {
@@ -299,7 +302,10 @@
   </style>
 
   <a href="https://wa.me/+9660568000085" class="whatsapp-button" target="_blank" aria-label="تواصل معنا عبر واتساب">
-    <img src="assets/img/whatsapp.png" alt="WhatsApp" class="whatsapp-icon">
+    <picture>
+      <source srcset="assets/img/whatsapp.webp" type="image/webp">
+      <img src="assets/img/whatsapp.webp" alt="WhatsApp" class="whatsapp-icon" loading="lazy">
+    </picture>
   </a>
 
   <script type="text/javascript">
