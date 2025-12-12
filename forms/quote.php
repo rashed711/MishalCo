@@ -12,7 +12,30 @@
   if( file_exists($php_email_form = '../assets/vendor/php-email-form/php-email-form.php' )) {
     include( $php_email_form );
   } else {
-    die( 'Unable to load the "PHP Email Form" Library!');
+    // Fallback: simple mail() when php-email-form library is missing.
+    function safe_post_q($k) {
+      return isset($_POST[$k]) ? trim(strip_tags($_POST[$k])) : '';
+    }
+
+    $name = safe_post_q('name');
+    $email = safe_post_q('email');
+    $phone = safe_post_q('phone');
+    $subject = 'Request for a quote';
+    $message = safe_post_q('message');
+
+    $headers = "From: " . ($name ?: 'Website Contact') . " <" . ($email ?: 'no-reply@example.com') . ">\r\n";
+    if ($email) { $headers .= "Reply-To: " . $email . "\r\n"; }
+    $body = "Name: $name\nEmail: $email\nPhone: $phone\n\nMessage:\n$message\n";
+
+    $sent = false;
+    try {
+      $sent = @mail($receiving_email_address, $subject, $body, $headers);
+    } catch (Exception $e) {
+      $sent = false;
+    }
+
+    echo $sent ? 'OK' : 'ERROR';
+    exit;
   }
 
   $contact = new PHP_Email_Form;

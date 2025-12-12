@@ -78,9 +78,13 @@
 
   <!-- Google tag (gtag.js) event -->
   <script>
-    gtag('event', 'ads_conversion_Contact_Us_1', {
-      // <event_parameters>
-    });
+    try {
+      if (typeof gtag === 'function') {
+        gtag('event', 'ads_conversion_Contact_Us_1', {});
+      }
+    } catch (e) {
+      // gtag not yet defined — ignore safely
+    }
   </script>
 
 
@@ -885,6 +889,7 @@
   <script src="assets/vendor/purecounter/purecounter_vanilla.js"></script>
   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
   <script src="https://unpkg.com/isotope-layout@3/dist/isotope.pkgd.min.js"></script>
+  <script src="assets/js/main.js"></script>
   <script>
     document.addEventListener('DOMContentLoaded', function () {
       let projectsIsotope = document.querySelector('.isotope-container');
