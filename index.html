@@ -97,29 +97,11 @@
       padding: 0
     }
 
-    .header {
-      background: #fff;
-      transition: all .5s;
-      z-index: 997;
-      height: 90px;
-      border-bottom: 1px solid #fff
-    }
 
-    .header.fixed-top {
-      position: fixed;
-      top: 0;
-      right: 0;
-      left: 0
-    }
-
-    .header .logo img {
-      max-height: 85px;
-      margin-right: 6px
-    }
 
     #hero {
       width: 100%;
-      min-height: 30vh;
+      min-height: 100vh;
       background: #000;
       padding: 0;
       position: relative
@@ -783,7 +765,7 @@
                       والنزاعات التجارية، نضمن لك إرشادًا مبنيًا على معرفة دقيقة بالقوانين السعودية، لحماية مصالحك
                       واتخاذ قرارات مستنيرة.
                     </p>
-                    <a href="#" style="color: #feb900; font-weight: bold;">قراءة المزيد</a>
+                    <a href="blog-legal-consultations.html" style="color: #feb900; font-weight: bold;">قراءة المزيد</a>
                     <hr>
                   </div>
                 </div>
@@ -811,7 +793,7 @@
                       التجارية، إدارة المخاطر القانونية، وضمان الامتثال القانوني السعودي. خبرتنا في القانون التجاري تضمن
                       بيئة عمل مستقرة وآمنة، لتركز شركتك على الابتكار والنجاح بثقة.
                     </p>
-                    <a href="#" style="color: #feb900; font-weight: bold;">قراءة المزيد</a>
+                    <a href="blog-corporate-lawyer.html" style="color: #feb900; font-weight: bold;">قراءة المزيد</a>
                     <hr>
                   </div>
                 </div>
@@ -839,7 +821,7 @@
                       أمام النيابة، ودفاعًا قويًا بالمحاكم. نركز على حماية حقوقك، جمع الأدلة، وتحليل الوقائع لتقديم
                       دفاعات قانونية قوية. اختيارك لمحامي جنائي متخصص بمكة يمنحك الثقة والأمان في أصعب الأوقات.
                     </p>
-                    <a href="#" style="color: #feb900; font-weight: bold;">قراءة المزيد</a>
+                    <a href="blog-criminal-lawyer.html" style="color: #feb900; font-weight: bold;">قراءة المزيد</a>
                     <hr>
                   </div>
                 </div>
@@ -1080,47 +1062,10 @@
     });
   </script>
 
-  <style>
-    .whatsapp-button {
-      position: fixed !important;
-      bottom: 25px !important;
-      left: 20px !important;
-      z-index: 9999999 !important;
-      /* رقم طبقة عالٍ جداً */
-      width: 55px;
-      height: 55px;
-      background-color: #25d366;
-      border-radius: 50%;
-      display: flex !important;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
-      text-decoration: none;
-      transition: all 0.3s ease;
-      -webkit-tap-highlight-color: transparent;
-    }
 
-    .whatsapp-button:hover {
-      transform: scale(1.1);
-      box-shadow: 0 6px 16px rgba(0, 0, 0, 0.5);
-    }
 
-    /* تنسيق الأيقونة بدلاً من الصورة */
-    .whatsapp-button i {
-      font-size: 32px;
-      /* حجم الأيقونة */
-      color: white;
-      /* لون الأيقونة أبيض */
-      margin-top: 2px;
-      /* ضبط المحاذاة الدقيقة */
-    }
-  </style>
-
-  <a href="https://wa.me/+9660568000085" class="whatsapp-button" target="_blank">
-    <picture>
-      <source srcset="assets/img/whatsapp.webp" type="image/webp">
-      <img src="assets/img/whatsapp.webp" alt="WhatsApp" class="whatsapp-icon" style="width: 35px; height: 35px;">
-    </picture>
+  <a href="https://wa.me/+9660568000085" class="whatsapp-fixed-btn" target="_blank">
+    <i class="bi bi-whatsapp"></i>
   </a>
 
   <!-- End Whatsapp button -->
@@ -1139,6 +1084,41 @@
           referrerPolicy="no-referrer-when-downgrade"></a></div>
   </noscript>
   <!-- End of Statcounter Code -->
+  <script>
+    // تأجيل تحميل سكربتات التتبع حتى بعد تحميل الصفحة
+    window.addEventListener('load', function () {
+      // Google Analytics
+      var gtagScript = document.createElement('script');
+      gtagScript.async = true;
+      gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=AW-17384218160';
+      document.head.appendChild(gtagScript);
+
+      gtagScript.onload = function () {
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'AW-17384218160');
+        gtag('event', 'ads_conversion_Contact_Us_1', {});
+      };
+
+      // Twitter Tracking
+      !function (e, t, n, s, u, a) {
+        e.twq || (s = e.twq = function () {
+          s.exe ? s.exe.apply(s, arguments) : s.queue.push(arguments);
+        }, s.version = '1.1', s.queue = [], u = t.createElement(n), u.async = !0, u.src = 'https://static.ads-twitter.com/uwt.js',
+          a = t.getElementsByTagName(n)[0], a.parentNode.insertBefore(u, a))
+      }(window, document, 'script');
+      twq('config', 'q8p0i');
+      twq('event', 'tw-q8p0i-q8p0i', {});
+
+      // Clarity
+      (function (c, l, a, r, i, t, y) {
+        c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+        t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+        y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+      })(window, document, "clarity", "script", "uctykanxrf");
+    });
+  </script>
 </body>
 
 </html>

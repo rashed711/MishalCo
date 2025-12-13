@@ -7,11 +7,9 @@
 
   <title>مشعل بادغيش للمحاماة - 404</title>
 
-  <meta name="description"
-    content="404" />
+  <meta name="description" content="404" />
 
-  <meta name="keywords"
-    content="404">
+  <meta name="keywords" content="404">
 
   <meta name="author" content="مشعل بادغيش للمحاماة | خبرة قانونية متكاملة">
   <meta name="robots" content="index, follow">
@@ -104,7 +102,7 @@
             <div class="col-lg-6 text-center">
               <h1>Error 404</h1>
               <p>page not found</p>
-            
+
             </div>
           </div>
         </div>
@@ -261,43 +259,47 @@
 
 
   <!-- Start Whatsapp button -->
-  <style>
-    .whatsapp-button {
-      position: fixed;
-      bottom: 60px;
-      right: 15px;
-      z-index: 1000;
-      width: 40px;
-      height: 40px;
-      /* background-color: #25d366; */
-      color: white;
-      /* border-radius: 50%; */
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-      transition: transform 0.3s ease;
-    }
-
-    .whatsapp-button:hover {
-      transform: scale(1.1);
-    }
-
-    .whatsapp-icon {
-      width: 30px;
-      height: 30px;
-    }
-  </style>
-
-  <a href="https://wa.me/+9660568000085" class="whatsapp-button" target="_blank">
-    <picture>
-      <source srcset="assets/img/whatsapp.webp" type="image/webp">
-      <img src="assets/img/whatsapp.webp" alt="WhatsApp" class="whatsapp-icon" loading="lazy">
-    </picture>
+  <a href="https://wa.me/+9660568000085" class="whatsapp-fixed-btn" target="_blank">
+    <i class="bi bi-whatsapp"></i>
   </a>
 
   <!-- End Whatsapp button -->
 
+  <script>
+    // تأجيل تحميل سكربتات التتبع حتى بعد تحميل الصفحة
+    window.addEventListener('load', function () {
+      // Google Analytics
+      var gtagScript = document.createElement('script');
+      gtagScript.async = true;
+      gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=AW-17384218160';
+      document.head.appendChild(gtagScript);
+
+      gtagScript.onload = function () {
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'AW-17384218160');
+        gtag('event', 'ads_conversion_Contact_Us_1', {});
+      };
+
+      // Twitter Tracking
+      !function (e, t, n, s, u, a) {
+        e.twq || (s = e.twq = function () {
+          s.exe ? s.exe.apply(s, arguments) : s.queue.push(arguments);
+        }, s.version = '1.1', s.queue = [], u = t.createElement(n), u.async = !0, u.src = 'https://static.ads-twitter.com/uwt.js',
+          a = t.getElementsByTagName(n)[0], a.parentNode.insertBefore(u, a))
+      }(window, document, 'script');
+      twq('config', 'q8p0i');
+      twq('event', 'tw-q8p0i-q8p0i', {});
+
+      // Clarity
+      (function (c, l, a, r, i, t, y) {
+        c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+        t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+        y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+      })(window, document, "clarity", "script", "uctykanxrf");
+    });
+  </script>
 </body>
 
 </html>

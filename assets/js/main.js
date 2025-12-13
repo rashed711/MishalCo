@@ -129,14 +129,19 @@
     let initIsotope;
     const isotopeContainer = isotopeItem.querySelector('.isotope-container');
     if (!isotopeContainer) return;
+
+    // Initialize Isotope immediately with the default filter
+    initIsotope = new Isotope(isotopeContainer, {
+      itemSelector: '.isotope-item',
+      layoutMode: layout,
+      filter: filter,
+      sortBy: sort
+    });
+
+    // Re-layout when images are loaded
     if (typeof imagesLoaded === 'function') {
       imagesLoaded(isotopeContainer, function() {
-      initIsotope = new Isotope(isotopeItem.querySelector('.isotope-container'), {
-        itemSelector: '.isotope-item',
-        layoutMode: layout,
-        filter: filter,
-        sortBy: sort
-      });
+        initIsotope.layout();
       });
     }
 
