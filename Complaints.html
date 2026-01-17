@@ -196,13 +196,27 @@
 
         <div class="row position-relative">
 
-          <!-- Reserved space for Tally complaints form to reduce CLS -->
-          <div style="min-height: 550px;">
-            <iframe
-              data-tally-src="https://tally.so/embed/wvZQaQ?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1"
-              loading="lazy" width="100%" height="550" frameborder="0" marginheight="0" marginwidth="0"
-              title="مركز الشكاوي - مشعل بادغيش للمحاماة"></iframe>
-            <script>var d = document, w = "https://tally.so/widgets/embed.js", v = function () { "undefined" != typeof Tally ? Tally.loadEmbeds() : d.querySelectorAll("iframe[data-tally-src]:not([src])").forEach((function (e) { e.src = e.dataset.tallySrc })) }; if ("undefined" != typeof Tally) v(); else if (d.querySelector('script[src="' + w + '"]') == null) { var s = d.createElement("script"); s.src = w, s.onload = v, s.onerror = v, d.body.appendChild(s); }</script>
+          <div class="col-lg-8 mx-auto aos-init aos-animate" data-aos="fade-up" data-aos-delay="200">
+            <form action="forms/complaint.php" method="post" role="form" class="php-email-form">
+              <div class="row">
+                <div class="col-md-6 form-group">
+                  <input type="text" name="name" class="form-control" id="name" placeholder="الاسم الكريم" required="">
+                </div>
+                <div class="col-md-6 form-group mt-3 mt-md-0">
+                  <input type="tel" class="form-control" name="phone" id="phone" placeholder="رقم الجوال" required="">
+                </div>
+              </div>
+              <div class="form-group mt-3">
+                <textarea class="form-control" name="message" rows="5" placeholder="تفاصيل المشكلة / الاستفسار"
+                  required=""></textarea>
+              </div>
+              <div class="my-3">
+                <div class="loading">جارٍ الإرسال...</div>
+                <div class="error-message"></div>
+                <div class="sent-message">تم إرسال بلاغك بنجاح! سيتم مراجعته والتواصل معك.</div>
+              </div>
+              <div class="text-center"><button type="submit">إرسال</button></div>
+            </form>
           </div>
 
         </div>
