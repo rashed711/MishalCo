@@ -6,7 +6,7 @@
 * License: https://bootstrapmade.com/license/
 */
 
-(function() {
+(function () {
   "use strict";
 
   /**
@@ -54,7 +54,7 @@
    * Toggle mobile nav dropdowns
    */
   document.querySelectorAll('.navmenu .toggle-dropdown').forEach(navmenu => {
-    navmenu.addEventListener('click', function(e) {
+    navmenu.addEventListener('click', function (e) {
       e.preventDefault();
       this.parentNode.classList.toggle('active');
       this.parentNode.nextElementSibling.classList.toggle('dropdown-active');
@@ -65,11 +65,29 @@
   /**
    * Preloader
    */
+  /**
+   * Preloader
+   */
   const preloader = document.querySelector('#preloader');
   if (preloader) {
-    window.addEventListener('load', () => {
-      preloader.remove();
-    });
+    // Remove preloader immediately when DOM is ready, or after a short timeout if it's already ready
+    const removePreloader = () => {
+      if (preloader) {
+        preloader.remove();
+      }
+    };
+
+    if (document.readyState === 'loading') {
+      document.addEventListener('DOMContentLoaded', removePreloader);
+    } else {
+      removePreloader();
+    }
+
+    // Safety fallback: ensure it's removed after 1 second max even if something hangs
+    setTimeout(removePreloader, 1000);
+
+    // Also keeping the load event just in case, but it will likely adhere to the above first
+    window.addEventListener('load', removePreloader);
   }
 
   /**
@@ -84,11 +102,11 @@
   }
   if (scrollTop) {
     scrollTop.addEventListener('click', (e) => {
-    e.preventDefault();
-    window.scrollTo({
-      top: 0,
-      behavior: 'smooth'
-    });
+      e.preventDefault();
+      window.scrollTo({
+        top: 0,
+        behavior: 'smooth'
+      });
     });
   }
 
@@ -101,14 +119,16 @@
   function aosInit() {
     if (typeof AOS !== 'undefined' && AOS && typeof AOS.init === 'function') {
       AOS.init({
-      duration: 600,
-      easing: 'ease-in-out',
-      once: true,
-      mirror: false
+        duration: 400, // Reduced from 600 for snappy feel
+        offset: 50,    // Reduced offset to trigger sooner
+        easing: 'ease-in-out',
+        once: true,
+        mirror: false
       });
     }
   }
-  window.addEventListener('load', aosInit);
+  // Initialize on DOMContentLoaded for faster start, irrelevant of images loading
+  document.addEventListener('DOMContentLoaded', aosInit);
 
   /**
    * Initiate glightbox
@@ -121,7 +141,7 @@
   /**
    * Init isotope layout and filters
    */
-  document.querySelectorAll('.isotope-layout').forEach(function(isotopeItem) {
+  document.querySelectorAll('.isotope-layout').forEach(function (isotopeItem) {
     let layout = isotopeItem.getAttribute('data-layout') ?? 'masonry';
     let filter = isotopeItem.getAttribute('data-default-filter') ?? '*';
     let sort = isotopeItem.getAttribute('data-sort') ?? 'original-order';
@@ -140,13 +160,13 @@
 
     // Re-layout when images are loaded
     if (typeof imagesLoaded === 'function') {
-      imagesLoaded(isotopeContainer, function() {
+      imagesLoaded(isotopeContainer, function () {
         initIsotope.layout();
       });
     }
 
-    isotopeItem.querySelectorAll('.isotope-filters li').forEach(function(filters) {
-      filters.addEventListener('click', function() {
+    isotopeItem.querySelectorAll('.isotope-filters li').forEach(function (filters) {
+      filters.addEventListener('click', function () {
         isotopeItem.querySelector('.isotope-filters .filter-active').classList.remove('filter-active');
         this.classList.add('filter-active');
         initIsotope.arrange({
@@ -165,7 +185,7 @@
    */
   function initSwiper() {
     if (typeof Swiper !== 'undefined') {
-      document.querySelectorAll(".init-swiper").forEach(function(swiperElement) {
+      document.querySelectorAll(".init-swiper").forEach(function (swiperElement) {
         const configEl = swiperElement.querySelector(".swiper-config");
         if (!configEl) return;
         let config = {};
