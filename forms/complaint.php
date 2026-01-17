@@ -11,7 +11,7 @@ $smtp_port = 465;
 
 // Receiving email
 // Receiving email
-$receiving_email_address = ['Rashed1711@gmail.com', 'Rashed7271@gmail.com'];
+$receiving_email_address = ['Rashed1711@gmail.com', 'Rashed727@gmail.com'];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 

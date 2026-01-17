@@ -11,21 +11,21 @@ $smtp_port = 465;
 
 // Receiving email
 // Receiving email
-$receiving_email_address = ['Rashed1711@gmail.com', 'Rashed7271@gmail.com'];
+$receiving_email_address = ['Rashed1711@gmail.com', 'Rashed727@gmail.com'];
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     // Sanitize input
     $name = strip_tags(trim($_POST["name"]));
     $phone = strip_tags(trim($_POST["phone"]));
-    $email = filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL);
+    $email = isset($_POST["email"]) ? filter_var(trim($_POST["email"]), FILTER_SANITIZE_EMAIL) : '';
     $consultation_type = strip_tags(trim($_POST["consultation_type"]));
     $date = strip_tags(trim($_POST["date"]));
     $time = strip_tags(trim($_POST["time"])); // Combined hour/minute or just simple string
     $notes = strip_tags(trim($_POST["notes"]));
 
     // Validation
-    if (empty($name) || empty($phone) || empty($email) || empty($date)) {
+    if (empty($name) || empty($phone) || empty($date)) {
         http_response_code(200); // 200 used by validate.js even for validation errors? No, it checks response.ok. But throw new Error(data) will be used.
         // Actually validate.js checks `response.ok`. If 400, it throws standard error.
         // If I echo text, I should probably keep 200 OK but send error text if I want it displayed?
