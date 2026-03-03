@@ -51,11 +51,10 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <!-- Preload critical resources -->
-  <link rel="preload" href="assets/css/main.min.css" as="style">
-  <link rel="preload" href="assets/vendor/bootstrap/css/bootstrap.min.css" as="style">
-  <link rel="preload" href="assets/img/hero-carousel/hero-carousel-2.webp" as="image" type="image/webp">
-
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap"
+    as="style">
+  <link rel="preload" href="assets/vendor/bootstrap-icons/fonts/bootstrap-icons.woff2?e34853135f9e39acf64315236852cd5a"
+    as="font" type="font/woff2" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
 
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="print" onload="this.media='all'">
@@ -183,7 +182,7 @@
     }
   </style>
 
-  <link href="assets/css/main.min.css" rel="stylesheet">
+  <link href="assets/css/main.css" rel="stylesheet">
 
   <!-- Fallback for browsers with JavaScript disabled -->
   <noscript>
@@ -195,42 +194,63 @@
     <link href="assets/vendor/swiper/swiper-bundle.min.css" rel="stylesheet">
   </noscript>
 
-  <!-- Analytics scripts deferred for performance -->
+  <!-- Unified Analytics and Tracking scripts (Delayed for performance) -->
   <script>
-    // تأجيل تحميل سكربتات التتبع حتى بعد تحميل الصفحة
-    window.addEventListener('load', function () {
-      // Google Analytics
-      var gtagScript = document.createElement('script');
-      gtagScript.async = true;
-      gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=AW-17384218160';
-      document.head.appendChild(gtagScript);
+    (function () {
+      var trackingScriptsLoaded = false;
+      function loadTrackingScripts() {
+        if (trackingScriptsLoaded) return;
+        trackingScriptsLoaded = true;
 
-      gtagScript.onload = function () {
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'AW-17384218160');
-        gtag('config', 'G-L6LYHGZNX2');
-        gtag('event', 'ads_conversion_Contact_Us_1', {});
-      };
+        window.removeEventListener('scroll', loadTrackingScripts);
+        window.removeEventListener('mousemove', loadTrackingScripts);
+        window.removeEventListener('touchstart', loadTrackingScripts);
 
-      // Twitter Tracking
-      !function (e, t, n, s, u, a) {
-        e.twq || (s = e.twq = function () {
-          s.exe ? s.exe.apply(s, arguments) : s.queue.push(arguments);
-        }, s.version = '1.1', s.queue = [], u = t.createElement(n), u.async = !0, u.src = 'https://static.ads-twitter.com/uwt.js',
-          a = t.getElementsByTagName(n)[0], a.parentNode.insertBefore(u, a))
-      }(window, document, 'script');
-      twq('config', 'q8p0i');
-      twq('event', 'tw-q8p0i-q8p0i', {});
+        // Google Analytics
+        var gtagScript = document.createElement('script');
+        gtagScript.async = true;
+        gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=AW-17384218160';
+        document.head.appendChild(gtagScript);
+        gtagScript.onload = function () {
+          window.dataLayer = window.dataLayer || [];
+          function gtag() { dataLayer.push(arguments); }
+          gtag('js', new Date());
+          gtag('config', 'AW-17384218160');
+          gtag('config', 'G-L6LYHGZNX2');
+          gtag('event', 'ads_conversion_Contact_Us_1', {});
+        };
 
-      // Clarity
-      (function (c, l, a, r, i, t, y) {
-        c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
-        t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
-        y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
-      })(window, document, "clarity", "script", "uctykanxrf");
-    });
+        // Twitter Tracking
+        !function (e, t, n, s, u, a) {
+          e.twq || (s = e.twq = function () {
+            s.exe ? s.exe.apply(s, arguments) : s.queue.push(arguments);
+          }, s.version = '1.1', s.queue = [], u = t.createElement(n), u.async = !0, u.src = 'https://static.ads-twitter.com/uwt.js',
+            a = t.getElementsByTagName(n)[0], a.parentNode.insertBefore(u, a))
+        }(window, document, 'script');
+        twq('config', 'q8p0i');
+        twq('event', 'tw-q8p0i-q8p0i', {});
+
+        // Clarity
+        (function (c, l, a, r, i, t, y) {
+          c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
+          t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
+          y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
+        })(window, document, "clarity", "script", "uctykanxrf");
+
+        // Statcounter
+        window.sc_project = 13186440;
+        window.sc_invisible = 1;
+        window.sc_security = "ff0a6297";
+        var scScript = document.createElement('script');
+        scScript.async = true;
+        scScript.src = 'https://www.statcounter.com/counter/counter.js';
+        document.head.appendChild(scScript);
+      }
+
+      window.addEventListener('scroll', loadTrackingScripts, { passive: true });
+      window.addEventListener('mousemove', loadTrackingScripts, { passive: true });
+      window.addEventListener('touchstart', loadTrackingScripts, { passive: true });
+    })();
   </script>
 
 </head>
@@ -246,14 +266,18 @@
           <img src="assets/img/logo.webp" alt="مشعل بادغيش" width="100" height="100">
         </picture>
         <div class="social-links d-flex mt-4">
-          <a href="https://www.linkedin.com/company/mishal-lawfirm/" target="_blank" aria-label="LinkedIn"><i
-              class="bi bi-linkedin" style="font-size: 40px; padding: 8px;"></i></a>
-          <a href="https://x.com/mishal_lawfirm" target="_blank" aria-label="تويتر - Twitter"><i class="bi bi-x-lg"
-              style="font-size: 40px; padding: 8px;"></i></a>
-          <a href="https://www.facebook.com/mishal.lawfirm/" target="_blank" aria-label="فيسبوك - Facebook"><i
-              class="bi bi-facebook" style="font-size: 40px; padding: 8px;"></i></a>
-          <a href="https://maps.app.goo.gl/5CWETayPznbkXN9A9?g_st=iw" target="_blank" aria-label="موقعنا على الخريطة"><i
-              class="bi bi-geo-alt-fill" style="font-size: 40px; padding: 8px;"></i></a>
+          <a href="https://www.linkedin.com/company/mishal-lawfirm/" target="_blank" aria-label="LinkedIn"
+            style="width: 56px; height: 56px; display: inline-flex; align-items: center; justify-content: center;"><i
+              class="bi bi-linkedin" style="font-size: 40px; padding: 8px;" width="40" height="40"></i></a>
+          <a href="https://x.com/mishal_lawfirm" target="_blank" aria-label="تويتر - Twitter"
+            style="width: 56px; height: 56px; display: inline-flex; align-items: center; justify-content: center;"><i
+              class="bi bi-x-lg" style="font-size: 40px; padding: 8px;" width="40" height="40"></i></a>
+          <a href="https://www.facebook.com/mishal.lawfirm/" target="_blank" aria-label="فيسبوك - Facebook"
+            style="width: 56px; height: 56px; display: inline-flex; align-items: center; justify-content: center;"><i
+              class="bi bi-facebook" style="font-size: 40px; padding: 8px;" width="40" height="40"></i></a>
+          <a href="https://maps.app.goo.gl/5CWETayPznbkXN9A9?g_st=iw" target="_blank" aria-label="موقعنا على الخريطة"
+            style="width: 56px; height: 56px; display: inline-flex; align-items: center; justify-content: center;"><i
+              class="bi bi-geo-alt-fill" style="font-size: 40px; padding: 8px;" width="40" height="40"></i></a>
         </div>
       </a>
 
@@ -265,7 +289,9 @@
           <li><a href="book_consultation.html">حجز استشارة</a></li>
           <li><a href="Complaints.html">استفسار- شكوي</a></li>
         </ul>
-        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"
+          style="width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center;"
+          width="28" height="28"></i>
       </nav>
 
     </div>
@@ -292,6 +318,20 @@
 
       <div id="hero-carousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="5000">
 
+        <div class="carousel-item active">
+          <picture>
+            <source media="(max-width: 768px)" srcset="assets/img/hero-carousel/hero-carousel-4-mobile.webp"
+              type="image/webp">
+            <source media="(max-width: 1024px)" srcset="assets/img/hero-carousel/hero-carousel-4-tablet.webp"
+              type="image/webp">
+            <source srcset="assets/img/hero-carousel/hero-carousel-4.webp" type="image/webp">
+            <img src="assets/img/hero-carousel/hero-carousel-4.webp" srcset="assets/img/hero-carousel/hero-carousel-2-mobile.webp 768w,
+                      assets/img/hero-carousel/hero-carousel-4-tablet.webp 1024w,
+                      assets/img/hero-carousel/hero-carousel-4.webp 1920w" sizes="100vw" alt="افضل مكتب محاماة في مكة"
+              fetchpriority="high" width="1920" height="1080">
+          </picture>
+        </div>
+
         <div class="carousel-item">
           <picture>
             <source media="(max-width: 768px)" srcset="assets/img/hero-carousel/hero-carousel-1-mobile.webp"
@@ -303,20 +343,6 @@
                       assets/img/hero-carousel/hero-carousel-1-tablet.webp 1024w,
                       assets/img/hero-carousel/hero-carousel-1.webp 1920w" sizes="100vw" alt="مكتب محاماة في مكة"
               loading="lazy" width="1920" height="1080">
-          </picture>
-        </div>
-
-        <div class="carousel-item active">
-          <picture>
-            <source media="(max-width: 768px)" srcset="assets/img/hero-carousel/hero-carousel-2-mobile.webp"
-              type="image/webp">
-            <source media="(max-width: 1024px)" srcset="assets/img/hero-carousel/hero-carousel-2-tablet.webp"
-              type="image/webp">
-            <source srcset="assets/img/hero-carousel/hero-carousel-2.webp" type="image/webp">
-            <img src="assets/img/hero-carousel/hero-carousel-2.webp" srcset="assets/img/hero-carousel/hero-carousel-2-mobile.webp 768w,
-                      assets/img/hero-carousel/hero-carousel-2-tablet.webp 1024w,
-                      assets/img/hero-carousel/hero-carousel-2.webp 1920w" sizes="100vw" alt="افضل مكتب محاماة في مكة"
-              fetchpriority="high" width="1920" height="1080">
           </picture>
         </div>
 
@@ -336,14 +362,14 @@
 
         <div class="carousel-item">
           <picture>
-            <source media="(max-width: 768px)" srcset="assets/img/hero-carousel/hero-carousel-4-mobile.webp"
+            <source media="(max-width: 768px)" srcset="assets/img/hero-carousel/hero-carousel-2-mobile.webp"
               type="image/webp">
-            <source media="(max-width: 1024px)" srcset="assets/img/hero-carousel/hero-carousel-4-tablet.webp"
+            <source media="(max-width: 1024px)" srcset="assets/img/hero-carousel/hero-carousel-2-tablet.webp"
               type="image/webp">
-            <source srcset="assets/img/hero-carousel/hero-carousel-4.webp" type="image/webp">
-            <img src="assets/img/hero-carousel/hero-carousel-4.webp" srcset="assets/img/hero-carousel/hero-carousel-4-mobile.webp 768w,
-                      assets/img/hero-carousel/hero-carousel-4-tablet.webp 1024w,
-                      assets/img/hero-carousel/hero-carousel-4.webp 1920w" sizes="100vw" alt="افضل مستشار قانوني"
+            <source srcset="assets/img/hero-carousel/hero-carousel-2.webp" type="image/webp">
+            <img src="assets/img/hero-carousel/hero-carousel-2.webp" srcset="assets/img/hero-carousel/hero-carousel-4-mobile.webp 768w,
+                      assets/img/hero-carousel/hero-carousel-2-tablet.webp 1024w,
+                      assets/img/hero-carousel/hero-carousel-2.webp 1920w" sizes="100vw" alt="افضل مستشار قانوني"
               loading="lazy" width="1920" height="1080">
           </picture>
         </div>
@@ -501,12 +527,13 @@
               <div class="portfolio-content h-100 text-center"
                 onclick="window.open('https://wa.me/+966568000085?text=السلام عليكم، أنا مهتم بالاستفسار عن التمثيل القضائي', '_blank');">
                 <img src="assets/img/type-of-case/الخدمات القضائية/التمثيل-القضائي-لدى-الجهات-القضائية.webp"
-                  class="img-fluid img-square" alt="التمثيل القضائي" loading="lazy" width="400" height="400">
+                  class="img-fluid img-cover" alt="التمثيل القضائي" loading="lazy" width="400" height="400">
                 <div class="portfolio-info">
                 </div>
                 <br>
                 <br>
-                <h5>التمثيل القضائي لدى الجهات القضائية واللجان شبه القضائية، والهيئات التحكيمية</h5>
+                <h3 style="font-size: 1.25rem; font-weight: 500;">التمثيل القضائي لدى الجهات القضائية واللجان شبه
+                  القضائية، والهيئات التحكيمية</h3>
                 <hr>
               </div>
             </div>
@@ -515,12 +542,13 @@
               <div class="portfolio-content h-100 text-center"
                 onclick="window.open('https://wa.me/+966568000085?text=السلام عليكم، أنا مهتم بالاستفسار عن دراسة القضايا وكتابة اللوائح والمذكرات، واللوائح الاعتراضية.', '_blank');">
                 <img src="assets/img/type-of-case/الخدمات القضائية/دراسة-القضايا-وكتابة-اللوائح….webp"
-                  class="img-fluid img-square" alt="التمثيل القضائي" loading="lazy" width="400" height="400">
+                  class="img-fluid img-cover" alt="التمثيل القضائي" loading="lazy" width="400" height="400">
                 <div class="portfolio-info">
                 </div>
                 <br>
                 <br>
-                <h5>دراسة القضايا وكتابة اللوائح والمذكرات، واللوائح الاعتراضية</h5>
+                <h3 style="font-size: 1.25rem; font-weight: 500;">دراسة القضايا وكتابة اللوائح والمذكرات، واللوائح
+                  الاعتراضية</h3>
                 <hr>
               </div>
             </div>
@@ -529,12 +557,13 @@
               <div class="portfolio-content h-100 text-center"
                 onclick="window.open('https://wa.me/+966568000085?text=السلام عليكم، أنا مهتم بالاستفسار عن التنفيذ القضائي لللأحكام', '_blank');">
                 <img src="assets/img/type-of-case/الخدمات القضائية/التمثيل-القضائي-للاحكام-والقرارات.webp"
-                  class="img-fluid img-square" alt="التمثيل القضائي" loading="lazy" width="400" height="400">
+                  class="img-fluid img-cover" alt="التمثيل القضائي" loading="lazy" width="400" height="400">
                 <div class="portfolio-info">
                 </div>
                 <br>
                 <br>
-                <h5>التنفيذ القضائي للأحكام والقرارات، وأحكام هيئات التحكيم</h5>
+                <h3 style="font-size: 1.25rem; font-weight: 500;">التنفيذ القضائي للأحكام والقرارات، وأحكام هيئات
+                  التحكيم</h3>
                 <hr>
               </div>
             </div>
@@ -546,12 +575,12 @@
                 onclick="window.open('https://wa.me/+966568000085?text=السلام عليكم، أنا مهتم بالاستفسار عن الـقضايا التجارية', '_blank');">
                 <img
                   src="assets/img/type-of-case/مجال العمل القضائي/القضايا-التجارية--القضايا-العقارية--القضايا-الادارية.webp"
-                  class="img-fluid img-square" alt="الـقضايا التجارية" loading="lazy" width="400" height="400">
+                  class="img-fluid img-cover" alt="الـقضايا التجارية" loading="lazy" width="400" height="400">
                 <div class="portfolio-info">
                 </div>
                 <br>
                 <br>
-                <h5>الـقضايا التجارية</h5>
+                <h3 style="font-size: 1.25rem; font-weight: 500;">الـقضايا التجارية</h3>
                 <hr>
               </div>
             </div>
@@ -560,12 +589,12 @@
               <div class="portfolio-content h-100 text-center"
                 onclick="window.open('https://wa.me/+966568000085?text=السلام عليكم، أنا مهتم بالاستفسار عن قضايا جرائم السوق المالية', '_blank');">
                 <img src="assets/img/type-of-case/مجال العمل القضائي/قضايا-جرائم-السوق-المالية-قضايا-العمل-والعمال.webp"
-                  class="img-fluid img-square" alt="قضايا جرائم السوق المالية" loading="lazy" width="400" height="400">
+                  class="img-fluid img-cover" alt="قضايا جرائم السوق المالية" loading="lazy" width="400" height="400">
                 <div class="portfolio-info">
                 </div>
                 <br>
                 <br>
-                <h5>قضايا جرائم السوق المالية</h5>
+                <h3 style="font-size: 1.25rem; font-weight: 500;">قضايا جرائم السوق المالية</h3>
                 <hr>
               </div>
             </div>
@@ -574,12 +603,12 @@
               <div class="portfolio-content h-100 text-center"
                 onclick="window.open('https://wa.me/+966568000085?text=السلام عليكم، أنا مهتم بالاستفسار عن القضايا العقارية', '_blank');">
                 <img src="assets/img/type-of-case/مجال العمل القضائي/محامي-عقارات-في-دبي-ابوظبي-الشارقة-الامارات.webp"
-                  class="img-fluid img-square" alt="القضايا العقارية" loading="lazy" width="400" height="400">
+                  class="img-fluid img-cover" alt="القضايا العقارية" loading="lazy" width="400" height="400">
                 <div class="portfolio-info">
                 </div>
                 <br>
                 <br>
-                <h5>القضايا العقارية</h5>
+                <h3 style="font-size: 1.25rem; font-weight: 500;">القضايا العقارية</h3>
                 <hr>
               </div>
             </div>
@@ -587,13 +616,13 @@
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-construction">
               <div class="portfolio-content h-100 text-center"
                 onclick="window.open('https://wa.me/+966568000085?text=السلام عليكم، أنا مهتم بالاستفسار عن القضايا الجمركية', '_blank');">
-                <img src="assets/img/type-of-case/مجال العمل القضائي/القضايا الجمركية.webp" class="img-fluid img-square"
-                  alt="القضايا العقارية" loading="lazy" width="400" height="400">
+                <img src="assets/img/type-of-case/مجال العمل القضائي/القضايا الجمركية.webp" class="img-fluid img-cover"
+                  class="img-fluid img-cover" alt="القضايا العقارية" loading="lazy" width="400" height="400">
                 <div class="portfolio-info">
                 </div>
                 <br>
                 <br>
-                <h5>القضايا الجمركية</h5>
+                <h3 style="font-size: 1.25rem; font-weight: 500;">القضايا الجمركية</h3>
                 <hr>
               </div>
             </div>
@@ -602,12 +631,12 @@
               <div class="portfolio-content h-100 text-center"
                 onclick="window.open('https://wa.me/+966568000085?text=السلام عليكم، أنا مهتم بالاستفسار عن قضايا الزكاة والضريبة', '_blank');">
                 <img src="assets/img/type-of-case/مجال العمل القضائي/قضايا الزكاة والضريبة.webp"
-                  class="img-fluid img-square" alt="قضايا الزكاة والضريبة" loading="lazy" width="400" height="400">
+                  class="img-fluid img-cover" alt="قضايا الزكاة والضريبة" loading="lazy" width="400" height="400">
                 <div class="portfolio-info">
                 </div>
                 <br>
                 <br>
-                <h5>قضايا الزكاة والضريبة</h5>
+                <h3 style="font-size: 1.25rem; font-weight: 500;">قضايا الزكاة والضريبة</h3>
                 <hr>
               </div>
             </div>
@@ -615,13 +644,13 @@
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-construction">
               <div class="portfolio-content h-100 text-center"
                 onclick="window.open('https://wa.me/+966568000085?text=السلام عليكم، أنا مهتم بالاستفسار عن قضايا التركات', '_blank');">
-                <img src="assets/img/type-of-case/مجال العمل القضائي/قضايا التركات.webp" class="img-fluid img-square"
-                  alt="قضايا التركات" loading="lazy" width="400" height="400">
+                <img src="assets/img/type-of-case/مجال العمل القضائي/قضايا التركات.webp" class="img-fluid img-cover"
+                  class="img-fluid img-cover" alt="قضايا التركات" loading="lazy" width="400" height="400">
                 <div class="portfolio-info">
                 </div>
                 <br>
                 <br>
-                <h5>قضايا التركات</h5>
+                <h3 style="font-size: 1.25rem; font-weight: 500;">قضايا التركات</h3>
                 <hr>
               </div>
             </div>
@@ -629,13 +658,13 @@
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-construction">
               <div class="portfolio-content h-100 text-center"
                 onclick="window.open('https://wa.me/+966568000085?text=السلام عليكم، أنا مهتم بالاستفسار عن القضايا المالية', '_blank');">
-                <img src="assets/img/type-of-case/مجال العمل القضائي/القضايا المالية.webp" class="img-fluid img-square"
-                  alt="القضايا المالية" loading="lazy" width="400" height="400">
+                <img src="assets/img/type-of-case/مجال العمل القضائي/القضايا المالية.webp" class="img-fluid img-cover"
+                  class="img-fluid img-cover" alt="القضايا المالية" loading="lazy" width="400" height="400">
                 <div class="portfolio-info">
                 </div>
                 <br>
                 <br>
-                <h5>القضايا المالية</h5>
+                <h3 style="font-size: 1.25rem; font-weight: 500;">القضايا المالية</h3>
                 <hr>
               </div>
             </div>
@@ -645,13 +674,14 @@
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-repairs">
               <div class="portfolio-content h-100 text-center"
                 onclick="window.open('https://wa.me/+966568000085?text=السلام عليكم، أنا مهتم بالاستفسار عن الاستشارات الشرعية والقانونية', '_blank');">
-                <img src="assets/img/type-of-case/مجال العمل القضائي/القضايا الجمركية.webp" class="img-fluid img-square"
-                  alt="تقديم الاستشارات الشرعية والقانونية" loading="lazy" width="400" height="400">
+                <img src="assets/img/type-of-case/مجال العمل القضائي/القضايا الجمركية.webp" class="img-fluid img-cover"
+                  class="img-fluid img-cover" alt="تقديم الاستشارات الشرعية والقانونية" loading="lazy" width="400"
+                  height="400">
                 <div class="portfolio-info">
                 </div>
                 <br>
                 <br>
-                <h5>تقديم الاستشارات الشرعية والقانونية</h5>
+                <h3 style="font-size: 1.25rem; font-weight: 500;">تقديم الاستشارات الشرعية والقانونية</h3>
                 <hr>
               </div>
             </div>
@@ -660,13 +690,13 @@
               <div class="portfolio-content h-100 text-center"
                 onclick="window.open('https://wa.me/+966568000085?text=السلام عليكم، أنا مهتم بالاستفسار عن إعداد دراسات الآثار والمواقف القانونية', '_blank');">
                 <img src="assets/img/type-of-case/مجال العمل القضائي/اعداد-دراسات-الآثار-والمواقف-القانونية.webp"
-                  class="img-fluid img-square" alt="إعداد دراسات الآثار والمواقف القانونية" loading="lazy" width="400"
+                  class="img-fluid img-cover" alt="إعداد دراسات الآثار والمواقف القانونية" loading="lazy" width="400"
                   height="400">
                 <div class="portfolio-info">
                 </div>
                 <br>
                 <br>
-                <h5>إعداد دراسات الآثار والمواقف القانونية</h5>
+                <h3 style="font-size: 1.25rem; font-weight: 500;">إعداد دراسات الآثار والمواقف القانونية</h3>
                 <hr>
               </div>
             </div>
@@ -678,12 +708,13 @@
               <div class="portfolio-content h-100 text-center"
                 onclick="window.open('https://wa.me/+966568000085?text=السلام عليكم، أنا مهتم بالاستفسار عن تحصيل الديون ', '_blank');">
                 <img src="assets/img/type-of-case/مجال العمل القضائي/قضايا المنازعات المصرفية والتمويلية.webp"
-                  class="img-fluid" alt="تحصيل الديون ميدانيا وقضائيا" loading="lazy" width="400" height="400">
+                  class="img-fluid img-cover" alt="تحصيل الديون ميدانيا وقضائيا" loading="lazy" width="400"
+                  height="400">
                 <div class="portfolio-info">
                 </div>
                 <br>
                 <br>
-                <h5>تحصيل الديون ميدانيا وقضائيا</h5>
+                <h3 style="font-size: 1.25rem; font-weight: 500;">تحصيل الديون ميدانيا وقضائيا</h3>
                 <hr>
               </div>
             </div>
@@ -693,13 +724,13 @@
                 onclick="window.open('https://wa.me/+966568000085?text=السلام عليكم، أنا مهتم بالاستفسار عن تحصيل الديون والمتعثرة والمعدومة والمستجدة ', '_blank');">
                 <img
                   src="assets/img/type-of-case/مجال العمل القضائي/كيفية-تحصيل-الديون-المعدومة-وكيف-يتم-إثباتها-ومعالجتها-1536x1024.webp"
-                  class="img-fluid" alt="تحصيل الديون والمتعثرة والمعدومة والمستجدة" loading="lazy" width="400"
-                  height="400">
+                  class="img-fluid img-cover" alt="تحصيل الديون والمتعثرة والمعدومة والمستجدة" loading="lazy"
+                  width="400" height="400">
                 <div class="portfolio-info">
                 </div>
                 <br>
                 <br>
-                <h5>تحصيل الديون والمتعثرة والمعدومة والمستجدة</h5>
+                <h3 style="font-size: 1.25rem; font-weight: 500;">تحصيل الديون والمتعثرة والمعدومة والمستجدة</h3>
                 <hr>
               </div>
             </div>
@@ -707,13 +738,13 @@
             <div class="col-lg-4 col-md-6 portfolio-item isotope-item filter-design">
               <div class="portfolio-content h-100 text-center"
                 onclick="window.open('https://wa.me/+966568000085?text=السلام عليكم، أنا مهتم بالاستفسار عن تحصيل الديون ومتابعتها على المستودى الميداني ', '_blank');">
-                <img src="assets/img/type-of-case/مجال العمل القضائي/تحصيل.webp" class="img-fluid"
+                <img src="assets/img/type-of-case/مجال العمل القضائي/تحصيل.webp" class="img-fluid img-cover"
                   alt="تحصيل الديون ومتابعتها على المستودى الميداني" loading="lazy" width="400" height="400">
                 <div class="portfolio-info">
                 </div>
                 <br>
                 <br>
-                <h5>تحصيل الديون ومتابعتها على المستودى الميداني</h5>
+                <h3 style="font-size: 1.25rem; font-weight: 500;">تحصيل الديون ومتابعتها على المستودى الميداني</h3>
                 <hr>
               </div>
             </div>
@@ -723,13 +754,13 @@
                 onclick="window.open('https://wa.me/+966568000085?text=السلام عليكم، أنا مهتم بالاستفسار عن متابعة تحصيل الديون على المسوى القضائي ', '_blank');">
                 <img
                   src="assets/img/type-of-case/مجال العمل القضائي/قضايا-تحصيل-الديون-وفوائد-توظيف-محامين-تجاريين-متخصصين-لقضايا-تسوية-الديون-2.webp"
-                  class="img-fluid" alt="متابعة تحصيل الديون على المسوى القضائي" loading="lazy" width="400"
+                  class="img-fluid img-cover" alt="متابعة تحصيل الديون على المسوى القضائي" loading="lazy" width="400"
                   height="400">
                 <div class="portfolio-info">
                 </div>
                 <br>
                 <br>
-                <h5>متابعة تحصيل الديون على المسوى القضائي</h5>
+                <h3 style="font-size: 1.25rem; font-weight: 500;">متابعة تحصيل الديون على المسوى القضائي</h3>
                 <hr>
               </div>
             </div>
@@ -739,13 +770,13 @@
                 onclick="window.open('https://wa.me/+966568000085?text=السلام عليكم، أنا مهتم بالاستفسار عن التنظيم والتخطيط لوضع خطة مناسبة لتحصيل الديون ', '_blank');">
                 <img
                   src="assets/img/type-of-case/مجال العمل القضائي/lawyer-law-firm-businessman-working-writing-lawbook-attorney.webp"
-                  class="img-fluid" alt="التنظيم والتخطيط لوضع خطة مناسبة لتحصيل الديون" loading="lazy" width="400"
-                  height="400">
+                  class="img-fluid img-cover" alt="التنظيم والتخطيط لوضع خطة مناسبة لتحصيل الديون" loading="lazy"
+                  width="400" height="400">
                 <div class="portfolio-info">
                 </div>
                 <br>
                 <br>
-                <h5>التنظيم والتخطيط لوضع خطة مناسبة لتحصيل الديون</h5>
+                <h3 style="font-size: 1.25rem; font-weight: 500;">التنظيم والتخطيط لوضع خطة مناسبة لتحصيل الديون</h3>
                 <hr>
               </div>
             </div>
@@ -792,7 +823,8 @@
                       عقودًا متقنة، ويدافع عن حقوقك بفعالية. اختيارك للمحامي الصحيح بمكة يضمن لك تمثيلًا قانونيًا قويًا
                       ونتائج تسعى إليها.
                     </p>
-                    <a href="blog-details-2025-01-01.html" style="color: #feb900; font-weight: bold;">قراءة المزيد</a>
+                    <a href="blog-details-2025-01-01.html" style="color: #feb900; font-weight: bold;"
+                      aria-label="قراءة المزيد عن أفضل محامي في مكة">قراءة المزيد</a>
                     <hr>
                   </div>
                 </div>
@@ -822,7 +854,8 @@
                       والنزاعات التجارية، نضمن لك إرشادًا مبنيًا على معرفة دقيقة بالقوانين السعودية، لحماية مصالحك
                       واتخاذ قرارات مستنيرة.
                     </p>
-                    <a href="blog-legal-consultations.html" style="color: #feb900; font-weight: bold;">قراءة المزيد</a>
+                    <a href="blog-legal-consultations.html" style="color: #feb900; font-weight: bold;"
+                      aria-label="قراءة المزيد عن استشارات قانونية موثوقة">قراءة المزيد</a>
                     <hr>
                   </div>
                 </div>
@@ -851,7 +884,8 @@
                       التجارية، إدارة المخاطر القانونية، وضمان الامتثال القانوني السعودي. خبرتنا في القانون التجاري تضمن
                       بيئة عمل مستقرة وآمنة، لتركز شركتك على الابتكار والنجاح بثقة.
                     </p>
-                    <a href="blog-corporate-lawyer.html" style="color: #feb900; font-weight: bold;">قراءة المزيد</a>
+                    <a href="blog-corporate-lawyer.html" style="color: #feb900; font-weight: bold;"
+                      aria-label="قراءة المزيد عن محامي الشركات وشريكك القانوني">قراءة المزيد</a>
                     <hr>
                   </div>
                 </div>
@@ -880,7 +914,8 @@
                       أمام النيابة، ودفاعًا قويًا بالمحاكم. نركز على حماية حقوقك، جمع الأدلة، وتحليل الوقائع لتقديم
                       دفاعات قانونية قوية. اختيارك لمحامي جنائي متخصص بمكة يمنحك الثقة والأمان في أصعب الأوقات.
                     </p>
-                    <a href="blog-criminal-lawyer.html" style="color: #feb900; font-weight: bold;">قراءة المزيد</a>
+                    <a href="blog-criminal-lawyer.html" style="color: #feb900; font-weight: bold;"
+                      aria-label="قراءة المزيد عن المحامي الجنائي">قراءة المزيد</a>
                     <hr>
                   </div>
                 </div>
@@ -921,7 +956,7 @@
               </div>
             </div>
             <div class="member-info text-center">
-              <h4>مشعل بادغيش</h4>
+              <h3 class="fs-5" style="color: var(--heading-color);">مشعل بادغيش</h3>
               <span>المدير العام</span>
               <p></p>
             </div>
@@ -939,7 +974,7 @@
               </div>
             </div>
             <div class="member-info text-center">
-              <h4>محمد الأحمد</h4>
+              <h3 class="fs-5" style="color: var(--heading-color);">محمد الأحمد</h3>
               <span>محامي</span>
               <p></p>
             </div>
@@ -964,21 +999,29 @@
             <span class="sitename">مشعل بادغيش للمحاماة</span>
           </a>
           <div class="social-links d-flex mt-4">
-            <a href="https://wa.me/+9660568000085" target="_blank" class="ms-2" aria-label="واتساب - WhatsApp"><i
+            <a href="https://wa.me/+9660568000085" target="_blank" class="ms-2" aria-label="واتساب - WhatsApp"
+              style="width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center;"><i
                 class="bi bi-whatsapp"></i></a>
             <a href="https://www.facebook.com/mishal.lawfirm/" target="_blank" class="ms-2"
-              aria-label="فيسبوك - Facebook"><i class="bi bi-facebook"></i></a>
-            <a href="https://x.com/mishal_lawfirm" target="_blank" class="ms-2" aria-label="تويتر - Twitter"><i
+              aria-label="فيسبوك - Facebook"
+              style="width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center;"><i
+                class="bi bi-facebook"></i></a>
+            <a href="https://x.com/mishal_lawfirm" target="_blank" class="ms-2" aria-label="تويتر - Twitter"
+              style="width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center;"><i
                 class="bi bi-x-lg"></i></a>
             <a href="https://www.linkedin.com/company/mishal-lawfirm/" target="_blank" class="ms-2"
-              aria-label="لينكد إن - LinkedIn"><i class="bi bi-linkedin"></i></a>
+              aria-label="لينكد إن - LinkedIn"
+              style="width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center;"><i
+                class="bi bi-linkedin"></i></a>
             <a href="https://maps.app.goo.gl/5CWETayPznbkXN9A9?g_st=iw" target="_blank" class="ms-2"
-              aria-label="موقعنا على الخريطة"><i class="bi bi-geo-alt-fill"></i></a>
+              aria-label="موقعنا على الخريطة"
+              style="width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center;"><i
+                class="bi bi-geo-alt-fill"></i></a>
           </div>
         </div>
 
         <div class="col-6 col-lg-2 col-md-3 footer-links">
-          <h4>روابط سريعة</h4>
+          <h3>روابط سريعة</h3>
           <ul>
             <li><a href="index.html">الرئيسية</a></li>
             <li><a href="about.html">عن الشركة</a></li>
@@ -990,7 +1033,7 @@
 
 
         <div class="col-6 col-lg-2 col-md-3 footer-links">
-          <h4>خدماتنا</h4>
+          <h3>خدماتنا</h3>
           <ul>
             <li><a href="index.html#projects">القضايا التجارية</a></li>
             <li><a href="index.html#projects">القضايا الجزائية</a></li>
@@ -1001,15 +1044,15 @@
         </div>
 
         <div class="col-lg-5 col-md-12 footer-contact">
-          <h4>فروعنا</h4>
+          <h3>فروعنا</h3>
           <div class="row">
             <div class="col-md-6 mb-4">
-              <h5>فرع مكة المكرمة</h5>
+              <h4 class="fs-5">فرع مكة المكرمة</h4>
               <p>شارع عبدالله بن عباس - بجوار نادي ستار تراك</p>
               <p><strong>هاتف:</strong> <a href="tel:+966568000085">0568000085</a></p>
             </div>
             <div class="col-md-6 mb-4">
-              <h5>البريد الإلكتروني</h5>
+              <h4 class="fs-5">البريد الإلكتروني</h4>
               <p><a href="mailto:info@Mishal-LawFirm.com">info@Mishal-LawFirm.com</a></p>
             </div>
           </div>
@@ -1029,6 +1072,12 @@
   <a href="#" id="scroll-top" class="scroll-top d-flex align-items-center justify-content-center"
     aria-label="العودة إلى الأعلى">
     <i class="bi bi-arrow-up-short"></i>
+  </a>
+
+  <a href="https://wa.me/966568000085" target="_blank"
+    class="whatsapp-btn d-flex align-items-center justify-content-center" aria-label="Contact us on WhatsApp">
+    <i class="bi bi-whatsapp" width="24" height="24"
+      style="width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center;"></i>
   </a>
 
   <div id="preloader"></div>
@@ -1083,54 +1132,7 @@
   <!-- End Whatsapp button -->
 
 
-  <!-- Default Statcounter code for Mishal Badghish http://mishal-lawfirm.com -->
-  <script type="text/javascript">
-    var sc_project = 13186440;
-    var sc_invisible = 1;
-    var sc_security = "ff0a6297"; 
-  </script>
-  <script type="text/javascript" src="https://www.statcounter.com/counter/counter.js" async></script>
-  <noscript>
-    <div class="statcounter"><a title="web stats" href="https://statcounter.com/" target="_blank"><img
-          class="statcounter" src="https://c.statcounter.com/13186440/0/ff0a6297/1/" alt="web stats"
-          referrerPolicy="no-referrer-when-downgrade"></a></div>
-  </noscript>
-  <!-- End of Statcounter Code -->
-  <script>
-    // تأجيل تحميل سكربتات التتبع حتى بعد تحميل الصفحة
-    window.addEventListener('load', function () {
-      // Google Analytics
-      var gtagScript = document.createElement('script');
-      gtagScript.async = true;
-      gtagScript.src = 'https://www.googletagmanager.com/gtag/js?id=AW-17384218160';
-      document.head.appendChild(gtagScript);
-
-      gtagScript.onload = function () {
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
-        gtag('config', 'AW-17384218160');
-        gtag('event', 'ads_conversion_Contact_Us_1', {});
-      };
-
-      // Twitter Tracking
-      !function (e, t, n, s, u, a) {
-        e.twq || (s = e.twq = function () {
-          s.exe ? s.exe.apply(s, arguments) : s.queue.push(arguments);
-        }, s.version = '1.1', s.queue = [], u = t.createElement(n), u.async = !0, u.src = 'https://static.ads-twitter.com/uwt.js',
-          a = t.getElementsByTagName(n)[0], a.parentNode.insertBefore(u, a))
-      }(window, document, 'script');
-      twq('config', 'q8p0i');
-      twq('event', 'tw-q8p0i-q8p0i', {});
-
-      // Clarity
-      (function (c, l, a, r, i, t, y) {
-        c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments) };
-        t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i;
-        y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y);
-      })(window, document, "clarity", "script", "uctykanxrf");
-    });
-  </script>
+  <!-- Unified Analytics Block Removed for head-level delay -->
 </body>
 
 </html>

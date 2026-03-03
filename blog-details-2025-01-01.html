@@ -39,8 +39,12 @@
   <link rel="manifest" href="assets/site.webmanifest">
   <meta name="theme-color" content="#ffffff">
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="preload"
+    href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
+    as="style">
+  <link rel="preload" href="assets/vendor/bootstrap-icons/fonts/bootstrap-icons.woff2?e34853135f9e39acf64315236852cd5a"
+    as="font" type="font/woff2" crossorigin>
+
   <link
     href="https://fonts.googleapis.com/css2?family=Cairo:wght@200..1000&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,800;1,900&family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;0,800;1,300;1,400;1,500;1,600;1,700;1,800&family=Poppins:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap"
     rel="stylesheet">
@@ -64,32 +68,38 @@
   <header id="header" class="header d-flex align-items-center fixed-top">
     <div class="container-fluid container-xl position-relative d-flex align-items-center justify-content-between">
 
-      <a href="index.html" class="logo d-flex align-items-center">
+      <a href="index.html" class="logo d-flex align-items-center" aria-label="الصفحة الرئيسية">
         <picture>
           <source srcset="assets/img/logo.webp" type="image/webp">
-          <img src="assets/img/logo.webp" alt="مشعل بادغيش" loading="lazy">
+          <img src="assets/img/logo.webp" alt="مشعل بادغيش" width="100" height="100">
         </picture>
         <div class="social-links d-flex mt-4">
-          <a href="https://www.linkedin.com/company/mishal-lawfirm/" target="_blank"><i class="bi bi-linkedin"
-              style="font-size: 30px;"></i></a>
-          <a href="https://x.com/mishal_lawfirm" target="_blank"><i class="bi bi-x-lg" style="font-size: 30px;"></i></a>
-          <a href="https://www.facebook.com/mishal.lawfirm/" target="_blank"><i class="bi bi-facebook"
-              style="font-size: 30px;"></i></a>
-
-          <a href="https://maps.app.goo.gl/5CWETayPznbkXN9A9?g_st=iw" target="_blank"><i class="bi bi-geo-alt-fill"
-              style="font-size: 30px;"></i></a>
+          <a href="https://www.linkedin.com/company/mishal-lawfirm/" target="_blank" aria-label="LinkedIn"
+            style="width: 56px; height: 56px; display: inline-flex; align-items: center; justify-content: center;"><i
+              class="bi bi-linkedin" style="font-size: 40px; padding: 8px;" width="40" height="40"></i></a>
+          <a href="https://x.com/mishal_lawfirm" target="_blank" aria-label="تويتر - Twitter"
+            style="width: 56px; height: 56px; display: inline-flex; align-items: center; justify-content: center;"><i
+              class="bi bi-x-lg" style="font-size: 40px; padding: 8px;" width="40" height="40"></i></a>
+          <a href="https://www.facebook.com/mishal.lawfirm/" target="_blank" aria-label="فيسبوك - Facebook"
+            style="width: 56px; height: 56px; display: inline-flex; align-items: center; justify-content: center;"><i
+              class="bi bi-facebook" style="font-size: 40px; padding: 8px;" width="40" height="40"></i></a>
+          <a href="https://maps.app.goo.gl/5CWETayPznbkXN9A9?g_st=iw" target="_blank" aria-label="موقعنا على الخريطة"
+            style="width: 56px; height: 56px; display: inline-flex; align-items: center; justify-content: center;"><i
+              class="bi bi-geo-alt-fill" style="font-size: 40px; padding: 8px;" width="40" height="40"></i></a>
         </div>
       </a>
 
       <nav id="navmenu" class="navmenu">
         <ul>
-          <li><a href="index.html" class="active">الرئيسية</a></li>
+          <li><a href="index.html">الرئيسية</a></li>
           <li><a href="about.html">عن الشركة</a></li>
           <li><a href="contact.html">تواصل معنا</a></li>
           <li><a href="book_consultation.html">حجز استشارة</a></li>
           <li><a href="Complaints.html">استفسار- شكوي</a></li>
         </ul>
-        <i class="mobile-nav-toggle d-xl-none bi bi-list"></i>
+        <i class="mobile-nav-toggle d-xl-none bi bi-list"
+          style="width: 28px; height: 28px; display: inline-flex; align-items: center; justify-content: center;"
+          width="28" height="28"></i>
       </nav>
 
     </div>
@@ -115,7 +125,8 @@
               <article class="article">
 
                 <div class="post-img">
-                  <img src="assets/img/constructions-1.webp" alt="افضل محامي في مكة" class="img-fluid" loading="lazy">
+                  <img src="assets/img/constructions-1.webp" alt="افضل محامي في مكة" class="img-fluid"
+                    fetchpriority="high" width="800" height="600">
                 </div>
 
                 <h3 class="title">اختيار المحامي الأمثل في مكة المكرمة: دليلك لتحقيق العدالة</h3>
@@ -194,19 +205,29 @@
             <span class="sitename">مشعل بادغيش للمحاماة</span>
           </a>
           <div class="social-links d-flex mt-4">
-            <a href="https://wa.me/+9660568000085" target="_blank" class="ms-2"><i class="bi bi-whatsapp"></i></a>
-            <a href="https://www.facebook.com/mishal.lawfirm/" target="_blank" class="ms-2"><i
+            <a href="https://wa.me/+9660568000085" target="_blank" class="ms-2" aria-label="واتساب - WhatsApp"
+              style="width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center;"><i
+                class="bi bi-whatsapp"></i></a>
+            <a href="https://www.facebook.com/mishal.lawfirm/" target="_blank" class="ms-2"
+              aria-label="فيسبوك - Facebook"
+              style="width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center;"><i
                 class="bi bi-facebook"></i></a>
-            <a href="https://x.com/mishal_lawfirm" target="_blank" class="ms-2"><i class="bi bi-x-lg"></i></a>
-            <a href="https://www.linkedin.com/company/mishal-lawfirm/" target="_blank" class="ms-2"><i
+            <a href="https://x.com/mishal_lawfirm" target="_blank" class="ms-2" aria-label="تويتر - Twitter"
+              style="width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center;"><i
+                class="bi bi-x-lg"></i></a>
+            <a href="https://www.linkedin.com/company/mishal-lawfirm/" target="_blank" class="ms-2"
+              aria-label="لينكد إن - LinkedIn"
+              style="width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center;"><i
                 class="bi bi-linkedin"></i></a>
-            <a href="https://maps.app.goo.gl/5CWETayPznbkXN9A9?g_st=iw" target="_blank" class="ms-2"><i
+            <a href="https://maps.app.goo.gl/5CWETayPznbkXN9A9?g_st=iw" target="_blank" class="ms-2"
+              aria-label="موقعنا على الخريطة"
+              style="width: 40px; height: 40px; display: inline-flex; align-items: center; justify-content: center;"><i
                 class="bi bi-geo-alt-fill"></i></a>
           </div>
         </div>
 
         <div class="col-6 col-lg-2 col-md-3 footer-links">
-          <h4>روابط سريعة</h4>
+          <h3>روابط سريعة</h3>
           <ul>
             <li><a href="index.html">الرئيسية</a></li>
             <li><a href="about.html">عن الشركة</a></li>
@@ -218,7 +239,7 @@
 
 
         <div class="col-6 col-lg-2 col-md-3 footer-links">
-          <h4>خدماتنا</h4>
+          <h3>خدماتنا</h3>
           <ul>
             <li><a href="index.html#projects">القضايا التجارية</a></li>
             <li><a href="index.html#projects">القضايا الجزائية</a></li>
@@ -229,15 +250,15 @@
         </div>
 
         <div class="col-lg-5 col-md-12 footer-contact">
-          <h4>فروعنا</h4>
+          <h3>فروعنا</h3>
           <div class="row">
             <div class="col-md-6 mb-4">
-              <h5>فرع مكة المكرمة</h5>
+              <h4 class="fs-5">فرع مكة المكرمة</h4>
               <p>شارع عبدالله بن عباس - بجوار نادي ستار تراك</p>
               <p><strong>هاتف:</strong> <a href="tel:+966568000085">0568000085</a></p>
             </div>
             <div class="col-md-6 mb-4">
-              <h5>البريد الإلكتروني</h5>
+              <h4 class="fs-5">البريد الإلكتروني</h4>
               <p><a href="mailto:info@Mishal-LawFirm.com">info@Mishal-LawFirm.com</a></p>
             </div>
           </div>
@@ -267,8 +288,10 @@
 
 
   <!-- Start Whatsapp button -->
-  <a href="https://wa.me/+9660568000085" class="whatsapp-fixed-btn" target="_blank">
-    <i class="bi bi-whatsapp"></i>
+  <a href="https://wa.me/966568000085" target="_blank"
+    class="whatsapp-btn d-flex align-items-center justify-content-center" aria-label="Contact us on WhatsApp">
+    <i class="bi bi-whatsapp" width="24" height="24"
+      style="width: 24px; height: 24px; display: inline-flex; align-items: center; justify-content: center;"></i>
   </a>
 
   <!-- End Whatsapp button -->

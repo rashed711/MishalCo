@@ -10,6 +10,81 @@
   "use strict";
 
   /**
+   * Page Loading Bar and Transitions (Branded)
+   */
+  const loadingBar = document.createElement('div');
+  loadingBar.id = 'top-loading-bar';
+  document.body.prepend(loadingBar);
+
+  let loadingProgress = 10;
+  const updateProgress = (target) => {
+    loadingProgress = Math.min(target, 100);
+    if (loadingBar) loadingBar.style.width = loadingProgress + '%';
+    if (loadingProgress === 100 && loadingBar) {
+      setTimeout(() => {
+        loadingBar.style.opacity = '0';
+        setTimeout(() => loadingBar.remove(), 500);
+      }, 300);
+    }
+  };
+
+  // Initial progress on DOM Ready
+  document.addEventListener('DOMContentLoaded', () => {
+    updateProgress(60);
+  });
+
+  // Final progress on window load
+  window.addEventListener('load', () => {
+    updateProgress(100);
+  });
+
+  // Handle Branded Page Exit Transitions
+  document.addEventListener('click', (e) => {
+    const link = e.target.closest('a');
+    if (link &&
+      link.href &&
+      link.href.startsWith(window.location.origin) &&
+      !link.href.includes('#') &&
+      link.target !== '_blank' &&
+      !e.ctrlKey && !e.shiftKey && !e.metaKey) {
+
+      e.preventDefault();
+
+      // Show original preloader for branded transition
+      let preloader = document.querySelector('#preloader');
+      if (!preloader) {
+        preloader = document.createElement('div');
+        preloader.id = 'preloader';
+        document.body.appendChild(preloader);
+      }
+
+      document.body.classList.add('page-transitioning');
+      preloader.style.opacity = '0';
+      preloader.style.display = 'block';
+      preloader.style.visibility = 'visible';
+
+      // Fast fade-in of spinner
+      requestAnimationFrame(() => {
+        preloader.style.transition = 'opacity 0.4s ease';
+        preloader.style.opacity = '1';
+      });
+
+      setTimeout(() => {
+        window.location.href = link.href;
+      }, 400);
+    }
+  });
+
+  // Handle back-forward cache
+  window.addEventListener('pageshow', (event) => {
+    if (event.persisted) {
+      const preloader = document.querySelector('#preloader');
+      if (preloader) preloader.remove();
+      document.body.classList.remove('page-transitioning');
+    }
+  });
+
+  /**
    * Apply .scrolled class to the body as the page is scrolled down
    */
   function toggleScrolled() {
@@ -70,10 +145,13 @@
    */
   const preloader = document.querySelector('#preloader');
   if (preloader) {
-    // Remove preloader immediately when DOM is ready, or after a short timeout if it's already ready
     const removePreloader = () => {
       if (preloader) {
-        preloader.remove();
+        preloader.style.transition = 'opacity 0.5s ease';
+        preloader.style.opacity = '0';
+        setTimeout(() => {
+          if (preloader.parentNode) preloader.remove();
+        }, 500);
       }
     };
 
@@ -83,10 +161,7 @@
       removePreloader();
     }
 
-    // Safety fallback: ensure it's removed after 1 second max even if something hangs
     setTimeout(removePreloader, 1000);
-
-    // Also keeping the load event just in case, but it will likely adhere to the above first
     window.addEventListener('load', removePreloader);
   }
 

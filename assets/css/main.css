@@ -19,9 +19,9 @@
 
 /* Global Colors - The following color variables are used throughout the website. Updating them here will change the color scheme of the entire website */
 :root {
-  --background-color: #F7F8FA
-    /* Background color for the entire website, including individual sections */
-    --default-color: #364d59;
+  --background-color: #F7F8FA;
+  /* Background color for the entire website, including individual sections */
+  --default-color: #364d59;
   /* Default color used for the majority of the text content across the entire website */
   --heading-color: #52565e;
   /* Color for headings, subheadings and title throughout the website */
@@ -35,9 +35,9 @@
 
 /* Nav Menu Colors - The following color variables are used specifically for the navigation menu. They are separate from the global colors to allow for more customization options */
 :root {
-  --nav-color: #F7F8FA
-    /* The default color of the main navmenu links */
-    --nav-hover-color: #ffffff;
+  --nav-color: #F7F8FA;
+  /* The default color of the main navmenu links */
+  --nav-hover-color: #ffffff;
   /* Applied to main navmenu links when they are hovered over or active */
   --nav-mobile-background-color: #ffffff;
   /* Used as the background color for mobile navigation menu */
@@ -76,6 +76,39 @@ body {
   color: var(--default-color);
   background-color: var(--background-color);
   font-family: var(--default-font);
+  /* Branded Page Transition */
+  opacity: 1;
+  /* Content is visible by default */
+}
+
+/* Ensure preloader is above everything during transition */
+#preloader {
+  z-index: 99999;
+}
+
+body.page-transitioning {
+  pointer-events: none;
+  /* Prevent double clicks */
+}
+
+/* Premium Top Loading Bar - Optimized for Compositing */
+#top-loading-bar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 3px;
+  background-color: var(--accent-color);
+  z-index: 10000;
+  transform: scaleX(0);
+  transform-origin: left;
+  transition: transform 0.2s ease, opacity 0.5s ease;
+  box-shadow: 0 0 8px var(--accent-color);
+}
+
+/* Smooth Content Entrance Animation */
+[data-aos] {
+  transition-property: transform, opacity;
 }
 
 a {
@@ -200,8 +233,9 @@ h6 {
 /* Global Header on Scroll
 ------------------------------*/
 .scrolled .header {
-  --background-color: rgba(21, 20, 20, 0.935);
-  --heading-color: #3c3c3c;
+  --background-color: rgba(21, 20, 20, 0.935) !important;
+  background-color: var(--background-color);
+  --heading-color: #ffffff;
   --nav-color: #ffffff;
   --nav-hover-color: #ffffff;
 }
@@ -254,6 +288,12 @@ h6 {
 
 
 /*---------------------------------------------------------------*/
+.img-cover {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+
 .img-square {
   width: 100%;
   /* تأكد أن العرض 100% بالنسبة للعنصر الأب */
@@ -331,7 +371,11 @@ h6 {
     font-size: 12px;
     line-height: 0;
     margin-left: 5px;
-    transition: 0.3s;
+    transition: transform 0.3s;
+  }
+
+  .navmenu li:hover>a i {
+    transform: translateX(-5px);
   }
 
   .navmenu>ul>li>a:before {
@@ -474,8 +518,12 @@ h6 {
     align-items: center;
     justify-content: center;
     border-radius: 50%;
-    transition: 0.3s;
+    transition: transform 0.3s, background-color 0.3s, color 0.3s;
     background-color: color-mix(in srgb, var(--accent-color), transparent 90%);
+  }
+
+  .navmenu a:hover i {
+    transform: translateX(-5px);
   }
 
   .navmenu a i:hover,
@@ -550,7 +598,10 @@ h6 {
 .footer {
   color: var(--default-color);
   background-color: var(--background-color);
-  background: url("../img/footer-bg.jpg") top center no-repeat;
+  /* TODO: Fix 404 error - footer-bg.webp not found, footer-bg.webp exists.
+     Keeping as jpg per user safety rules to avoid accidental design break. */
+  /* background: url("../img/footer-bg.jpg") top center no-repeat; */
+  background: url("../img/footer-bg.webp") top center no-repeat;
   background-size: cover;
   font-size: 14px;
   position: relative;
@@ -611,6 +662,7 @@ h6 {
 .footer .social-links a:hover {
   color: var(--accent-color);
   border-color: var(--accent-color);
+  transform: translateY(-5px);
 }
 
 .footer h4 {
@@ -683,7 +735,9 @@ h6 {
   inset: 0;
   z-index: 999999;
   overflow: hidden;
-  background: var(--background-color);
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  -webkit-backdrop-filter: blur(10px);
   transition: all 0.6s ease-out;
 }
 
@@ -692,7 +746,7 @@ h6 {
   position: fixed;
   top: calc(50% - 30px);
   left: calc(50% - 30px);
-  border: 6px solid #ffffff;
+  border: 6px solid rgba(254, 185, 0, 0.2);
   border-color: var(--accent-color) transparent var(--accent-color) transparent;
   border-radius: 50%;
   width: 60px;
@@ -1025,6 +1079,12 @@ section,
 .hero .carousel-control-prev:hover,
 .hero .carousel-control-next:hover {
   opacity: 0.9;
+  transform: scale(1.1);
+}
+
+.hero .carousel-control-prev:active,
+.hero .carousel-control-next:active {
+  transform: scale(0.95);
 }
 
 /*--------------------------------------------------------------
@@ -1717,6 +1777,11 @@ section,
   line-height: 0;
   margin-left: 6px;
   font-size: 16px;
+  transition: transform 0.3s;
+}
+
+.recent-blog-posts .post-item:hover .readmore i {
+  transform: translateX(-5px);
 }
 
 .recent-blog-posts .post-item:hover .post-title,
@@ -1800,11 +1865,13 @@ section,
   font-weight: 600;
   color: color-mix(in srgb, var(--default-color), transparent 20%);
   margin-left: 8px;
-  transition: 0.3s;
+  transition: transform 0.3s, color 0.3s;
+  display: inline-block;
 }
 
 .about .watch-video:hover a {
   color: var(--accent-color);
+  transform: translateX(-5px);
 }
 
 .about .about-img {
@@ -2985,6 +3052,71 @@ section,
 }
 
 /*--------------------------------------------------------------
+# Premium Form Styling
+--------------------------------------------------------------*/
+.form-control,
+.form-select {
+  border-radius: 8px;
+  padding: 12px 15px;
+  border: 1px solid #dee2e6;
+  background-color: #f8f9fa;
+  font-family: var(--default-font);
+  transition: all 0.3s ease;
+  color: var(--default-color);
+}
+
+.form-control:focus,
+.form-select:focus {
+  background-color: #ffffff;
+  border-color: var(--accent-color);
+  box-shadow: 0 0 0 0.25rem rgba(254, 185, 0, 0.2);
+  outline: none;
+}
+
+.php-email-form textarea.form-control {
+  min-height: 150px;
+}
+
+.php-email-form button[type="submit"] {
+  background: var(--accent-color);
+  border: 0;
+  padding: 12px 40px;
+  color: #1a1a1a;
+  transition: 0.4s;
+  border-radius: 50px;
+  font-weight: 600;
+  box-shadow: 0 4px 10px rgba(254, 185, 0, 0.2);
+}
+
+.php-email-form button[type="submit"]:hover {
+  background: #e5a800;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 15px rgba(254, 185, 0, 0.3);
+}
+
+/* RTL Adjustment for Select arrow - Only if dir=rtl is present */
+[dir="rtl"] .form-select {
+  background-position: left 0.75rem center;
+}
+
+/* Style success/error messages */
+.php-email-form .sent-message {
+  border-radius: 8px;
+  border-right: 5px solid #047857;
+}
+
+.php-email-form .error-message {
+  border-radius: 8px;
+  border-right: 5px solid #b91c1c;
+}
+
+.php-email-form .loading {
+  border-radius: 8px;
+  font-weight: 600;
+  color: var(--accent-color);
+}
+
+/*--------------------------------------------------------------
 # Floating WhatsApp Button
 --------------------------------------------------------------*/
 .whatsapp-fixed-btn {
@@ -3004,7 +3136,18 @@ section,
   align-items: center;
   justify-content: center;
   transition: all 0.3s ease;
-  animation: pulse-green 2s infinite;
+}
+
+/* Optimized Pulse Animation using pseudo-element */
+.whatsapp-fixed-btn::before {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-color: inherit;
+  border-radius: 50%;
+  z-index: -1;
+  animation: pulse-green-optimized 2s infinite;
 }
 
 .whatsapp-fixed-btn:hover {
@@ -3017,20 +3160,20 @@ section,
   line-height: 0;
 }
 
-@keyframes pulse-green {
+@keyframes pulse-green-optimized {
   0% {
     transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7);
+    opacity: 0.7;
   }
 
   70% {
-    transform: scale(1.05);
-    box-shadow: 0 0 0 15px rgba(37, 211, 102, 0);
+    transform: scale(1.6);
+    opacity: 0;
   }
 
   100% {
     transform: scale(1);
-    box-shadow: 0 0 0 0 rgba(37, 211, 102, 0);
+    opacity: 0;
   }
 }
 
@@ -3186,176 +3329,196 @@ section,
 # Mobile Typography Optimization - Complete Site
 --------------------------------------------------------------*/
 @media (max-width: 768px) {
-  
+
   /* Blog Details - Article Titles */
   .blog-details .title {
-    font-size: 22px !important; /* Reduced from 28px */
+    font-size: 22px !important;
+    /* Reduced from 28px */
     line-height: 1.4;
   }
-  
+
   .blog-details .article h3,
   .blog-details .content h3 {
-    font-size: 18px !important; /* Reduced from 22px */
+    font-size: 18px !important;
+    /* Reduced from 22px */
     line-height: 1.4;
   }
-  
+
   /* Page Titles */
   .page-title h1 {
-    font-size: 32px !important; /* Reduced from 56px */
+    font-size: 32px !important;
+    /* Reduced from 56px */
     line-height: 1.2;
   }
-  
+
   /* Section Titles */
   .section-title h2 {
-    font-size: 24px !important; /* Reduced from 32px */
+    font-size: 24px !important;
+    /* Reduced from 32px */
     line-height: 1.3;
   }
-  
+
   .section-title p {
     font-size: 14px;
   }
-  
+
   /* Blog Posts Listing */
   .blog-posts .post-title,
   .recent-blog-posts .post-title {
-    font-size: 18px !important; /* Reduced from 20px */
+    font-size: 18px !important;
+    /* Reduced from 20px */
     line-height: 1.4;
   }
-  
+
   .blog-posts p,
   .recent-blog-posts p {
     font-size: 14px;
     line-height: 1.6;
   }
-  
+
   /* Constructions/Cards Section */
   .constructions .card-item h4 {
-    font-size: 16px !important; /* Reduced from 20px */
+    font-size: 16px !important;
+    /* Reduced from 20px */
   }
-  
+
   .constructions .card-item .card-title {
     font-size: 16px !important;
   }
-  
+
   /* Services Section */
   .services .service-item h3 {
-    font-size: 18px !important; /* Reduced from 22px */
+    font-size: 18px !important;
+    /* Reduced from 22px */
   }
-  
+
   .services .service-item p {
     font-size: 13px;
   }
-  
+
   /* About Section */
   .about .inner-title {
-    font-size: 24px !important; /* Reduced from 2.75rem */
+    font-size: 24px !important;
+    /* Reduced from 2.75rem */
     line-height: 1.3;
   }
-  
+
   .about .our-story h3 {
-    font-size: 20px !important; /* Reduced from 2.25rem */
+    font-size: 20px !important;
+    /* Reduced from 2.25rem */
   }
-  
+
   /* Stats Counter */
   .stats-counter .stats-item span {
-    font-size: 28px !important; /* Reduced from 36px */
+    font-size: 28px !important;
+    /* Reduced from 36px */
   }
-  
+
   .stats-counter .stats-item p {
     font-size: 14px;
   }
-  
+
   /* General Paragraphs */
   body {
     font-size: 14px;
   }
-  
+
   p {
     font-size: 14px;
     line-height: 1.6;
   }
-  
+
   /* Blog Details Meta and Content */
   .blog-details .meta-top a,
   .blog-details .meta-top ul li {
     font-size: 13px !important;
   }
-  
+
   .blog-details .content p {
     font-size: 14px;
     line-height: 1.7;
   }
-  
+
   .blog-details .content blockquote p {
-    font-size: 16px !important; /* Reduced from 22px */
+    font-size: 16px !important;
+    /* Reduced from 22px */
     line-height: 1.5;
   }
-  
+
   /* Footer Headings */
   .footer h4 {
     font-size: 15px !important;
   }
-  
+
   .footer h5 {
     font-size: 16px !important;
   }
-  
+
   /* Project/Portfolio Items */
   .projects .portfolio-content h4,
   .project-details .portfolio-info h3 {
     font-size: 18px !important;
   }
-  
+
   /* Service Details */
   .service-details h3 {
-    font-size: 20px !important; /* Reduced from 26px */
+    font-size: 20px !important;
+    /* Reduced from 26px */
   }
-  
+
   .service-details h4 {
-    font-size: 17px !important; /* Reduced from 20px */
+    font-size: 17px !important;
+    /* Reduced from 20px */
   }
-  
+
   /* Alt Services */
   .alt-services h3,
   .alt-services-2 h3 {
-    font-size: 22px !important; /* Reduced from 28px */
+    font-size: 22px !important;
+    /* Reduced from 28px */
   }
-  
+
   .alt-services .icon-box h4,
   .alt-services-2 .icon-box h4 {
-    font-size: 16px !important; /* Reduced from 18px */
+    font-size: 16px !important;
+    /* Reduced from 18px */
   }
-  
+
   /* Features Section */
   .features .tab-pane h3 {
-    font-size: 24px !important; /* Reduced from 32px */
+    font-size: 24px !important;
+    /* Reduced from 32px */
   }
-  
+
   /* Team Section */
   .team .member h4 {
-    font-size: 16px !important; /* Reduced from 18px */
+    font-size: 16px !important;
+    /* Reduced from 18px */
   }
-  
+
   .team .member span {
     font-size: 13px;
   }
-  
+
   /* Contact Section */
   .contact .info-item h3 {
-    font-size: 17px !important; /* Reduced from 20px */
+    font-size: 17px !important;
+    /* Reduced from 20px */
   }
-  
+
   .contact .info-item p {
     font-size: 13px;
   }
-  
+
   /* Widgets */
   .widget-title {
-    font-size: 18px !important; /* Reduced from 20px */
+    font-size: 18px !important;
+    /* Reduced from 20px */
   }
-  
+
   .recent-posts-widget .post-item h4 {
-    font-size: 14px !important; /* Reduced from 15px */
+    font-size: 14px !important;
+    /* Reduced from 15px */
   }
 }
 
@@ -3363,35 +3526,35 @@ section,
 # Extra Small Mobile (375px and below) - Further Optimization
 --------------------------------------------------------------*/
 @media (max-width: 375px) {
-  
+
   /* Blog Article Titles - Extra Reduction */
   .blog-details .title {
     font-size: 20px !important;
     line-height: 1.3;
   }
-  
+
   /* Page Titles */
   .page-title h1 {
     font-size: 28px !important;
   }
-  
+
   /* Section Titles */
   .section-title h2 {
     font-size: 22px !important;
   }
-  
+
   /* Blog Post Cards */
   .blog-posts .post-title,
   .recent-blog-posts .post-title {
     font-size: 16px !important;
   }
-  
+
   /* General Content */
   body,
   p {
     font-size: 13px;
   }
-  
+
   /* Stats */
   .stats-counter .stats-item span {
     font-size: 24px !important;
