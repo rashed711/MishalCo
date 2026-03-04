@@ -114,7 +114,7 @@ body.page-transitioning {
 a {
   color: var(--accent-color);
   text-decoration: none;
-  transition: 0.3s;
+  transition: transform 0.3s, color 0.3s, background-color 0.3s;
 }
 
 a:hover {
@@ -662,7 +662,7 @@ h6 {
 .footer .social-links a:hover {
   color: var(--accent-color);
   border-color: var(--accent-color);
-  transform: translateY(-5px);
+  transform: translate(-5px, -5px);
 }
 
 .footer h4 {
@@ -1529,6 +1529,10 @@ section,
 
 .projects .portfolio-content img {
   transition: 0.3s;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1 / 1;
+  object-fit: cover;
 }
 
 .projects .portfolio-content .portfolio-info {
@@ -3152,7 +3156,7 @@ section,
 
 .whatsapp-fixed-btn:hover {
   background-color: #128c7e;
-  transform: scale(1.1);
+  transform: scale(1.1) translateX(-5px);
   color: #fff;
 }
 
@@ -3559,4 +3563,33 @@ section,
   .stats-counter .stats-item span {
     font-size: 24px !important;
   }
+}
+
+/* Custom Fixes by AI */
+.social-links a.ms-2:hover,
+a.ms-2:hover {
+  margin-left: 0.5rem !important;
+  /* Keep original margin */
+  transform: translateY(-5px) !important;
+  /* GPU animation */
+}
+
+.carousel-control-prev:hover,
+.carousel-control-next:hover,
+.hero .carousel-control-prev:hover,
+.hero .carousel-control-next:hover {
+  background-position: center !important;
+  transform: scale(1.1) !important;
+}
+
+.img-cover,
+.img-square,
+.img-fluid {
+  object-fit: cover !important;
+  width: 100% !important;
+  height: auto !important;
+}
+
+.img-square {
+  aspect-ratio: 1 / 1 !important;
 }

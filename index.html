@@ -51,11 +51,14 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap"
-    as="style">
+  <link rel="preload" href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" as="style"
+    onload="this.onload=null;this.rel='stylesheet'">
   <link rel="preload" href="assets/vendor/bootstrap-icons/fonts/bootstrap-icons.woff2?e34853135f9e39acf64315236852cd5a"
     as="font" type="font/woff2" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="preload" as="style" href="assets/css/main.css">
+  <noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&display=swap" rel="stylesheet">
+  </noscript>
 
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="print" onload="this.media='all'">
   <link href="assets/vendor/bootstrap-icons/bootstrap-icons.css" rel="stylesheet" media="print"
@@ -98,7 +101,9 @@
 
     .header .logo img {
       max-height: 100px;
-      margin-right: 8px
+      margin-right: 8px;
+      width: 100px;
+      height: 100px;
     }
 
     /* Hero Section */
@@ -134,7 +139,8 @@
     #hero .info {
       position: relative;
       z-index: 3;
-      padding: 140px 0 60px 0
+      padding: 140px 0 60px 0;
+      min-height: 480px;
     }
 
     #hero .info h1 {
